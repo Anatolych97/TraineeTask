@@ -6,7 +6,7 @@ let port = 3700;
 
 let jsonParser = bodyParser.json();
 
-
+let companyData =
 app.set('views', __dirname + '/tpl');
 app.set('view engine', 'pug');
 app.engine('pug', require('pug').__express);

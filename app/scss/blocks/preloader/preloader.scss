@@ -1,13 +1,3 @@
-.preloader {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 999999;
-  display: block;
-  background: #fff;
-}
 .section-loader-circle {
   position: absolute;
   top: 50%;
@@ -21,14 +11,10 @@
   border-bottom-color: rgba(0, 0, 0, 0.15);
   border-left-color: rgba(34, 34, 34, 1);
   border-right-color: rgba(0, 0, 0, 0.15);
-  animation: page-loader-circle 0.8s linear infinite;
+  animation: move 0.8s linear infinite;
 }
 
-@keyframes section-loader-circle {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@keyframes move {
+  from {transform: rotate(0deg)}
+  to {transform: rotate(360deg)}
 }

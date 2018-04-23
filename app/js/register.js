@@ -1,3 +1,4 @@
+'use strict';
 let form = $("#register-form");
 
 form.on("submit", function (e) {
@@ -10,7 +11,7 @@ form.on("submit", function (e) {
         dataType: "json",
         contentType: "application/json",
         success: function(data) {
-            location.href += "company";
+            document.location.href += "company";
         },
         error: function (data) {
             alert(data);

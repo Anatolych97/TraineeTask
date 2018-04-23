@@ -1,2 +1,20 @@
 @import "blocks/register-form/register-form";
+
+
+section {
+  position: relative;
+  height: 250px;
+
+  margin: 20px 5px;
+
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.section__title {
+  background-color: #ccc;
+  text-align: center;
+  border-radius: 3px;
+}
+
 @import "blocks/preloader/preloader";

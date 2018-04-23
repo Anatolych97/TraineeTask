@@ -10,15 +10,18 @@ html
     body
         .container
             .row
-                section.companies__total
-                    .preloader
-                        .section-loader-circle
-                section.companies__total
-                    .preloader
-                        .section-loader-circle
-                section.companies__location
-                    .preloader
-                        .section-loader-circle
-                section.news
-                    .preloader
-                        .section-loader-circle
+                section.col-6
+                    h3.section__title.text-center Total Companies
+                    .section-loader-circle
+                section.col-6
+                    h3.section__title.text-center List of Companies
+                    .section-loader-circle
+            .row
+                section.col-6
+                    h3.section__title.text-center Companies by Location
+                    .section-loader-circle
+                section.col-6.news
+                    h3.section__title.text-center News
+                    .section-loader-circle
+
+        script(src = 'app/js/scripts.min.js')
