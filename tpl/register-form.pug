@@ -3,22 +3,25 @@ html
     head
         title Register
         meta(charset="utf-8")
+        meta(name="description" content="CodeIT")
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1")
-        script(src = './app/js/scripts.min.js')
-        link(rel ='stylesheet', href = './app/css/main.min.css')
+        link(rel ='stylesheet', href = 'app/css/main.min.css')
     body
         .container
+            .row.justify-content-center
+                h2.register-form__title.col-6.text-center Sign Up
             .row.justify-content-md-center
-                form#register-form.col-6.d-flex.flex-column
-                    h2.register-form__title
-                    input#first-name.register-form__input(placeholder = 'Input your name')
-                    input#second-name.register-form__input(placeholder = 'Input your second name')
-                    input#email.register-form__input(type = 'email', placeholder = 'Input your email')
-                    select#gender.register-form__input_dropdown
+                form#register-form.register-form.col-6.d-flex.flex-column(name = 'registerForm', action = '/', method = 'post')
+                    input#first-name.register-form__element(required, pattern="[^0-9\S]{2,}", name = 'firstName', placeholder = ' Input your name')
+                    input#second-name.register-form__element(required, pattern="[^0-9\S]{2,}", name = 'secondName', minlength = '2', placeholder = ' Input your second name')
+                    input#email.register-form__element(required, name = 'email', type = 'email', placeholder = ' Input your email')
+                    select#gender.register-form__element_dropdown(name = 'gender', required)
                         option(value = 'Male') Male
                         option(value = 'Female') Female
-                    input#password.register-form__input(type = 'password', placeholder = 'Input your password')
+                    input#password.register-form__element(required, name = 'password', type = 'password', minlength = '10' placeholder = ' Input your password')
                     p
-                        label AG
-                            input#agreement.register-from__input_checkbox(type = 'checkbox', value = 'unchecked')
-                    input#send.register-form__input_button(type = 'button', value = 'send')
+                        label Conditions of Agreement
+                            input#agreement.register-from__element_checkbox(required, name = 'AG', type = 'checkbox', value = 'unchecked')
+                    button#register-form__send-button.register-form__element_button(type = 'submit', form = 'register-form') Send
+        script(src = 'app/js/scripts.min.js')
