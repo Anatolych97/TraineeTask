@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register Form</title>
+    <meta charset="utf-8">
+    <meta name="description" content="CodeIT">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <h2 class="register-form__title col-6 text-center">Sign Up</h2>
+    </div>
+    <div class="row justify-content-md-center">
+        <form class="register-form col-6 d-flex flex-column" id="register-form" name="registerForm" action="/" method="post">
+            <input class="register-form__element" id="first-name" required pattern="[^0-9]{2,}" name="name" placeholder=" Input your name">
+            <input class="register-form__element" id="second-name" required pattern="[^0-9]{3,60}" name="secondname" minlength="2" placeholder=" Input your second name">
+            <input class="register-form__element" id="email" required name="email" type="email" placeholder=" Input your email">
+            <select title = 'Gender' class="register-form__element_dropdown" id="gender" name="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <input class="register-form__element" id="password" required name="pass" type="password" minlength="10" placeholder=" Input your password">
+            <p>
+                <label>Conditions of Agreement
+                    <input class="register-from__element_checkbox" id="agreement" required name="AG" type="checkbox" value="unchecked">
+                </label>
+            </p>
+            <button class="register-form__element_button" id="register-form__send-button" type="submit" form="register-form">Send</button>
+        </form>
+    </div>
+</div>
+<script src="app/js/scripts.min.js"></script>
+</body>
+</html>

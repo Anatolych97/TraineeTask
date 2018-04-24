@@ -1,19 +1,47 @@
 'use strict';
+let companyURL = 'http://codeit.pro/codeitCandidates/serverFrontendTest/company/getList';
+let newsURL = 'http://codeit.pro/codeitCandidates/serverFrontendTest/news/getList';
 
-let preloaders = $(".section-loader-circle");
+let company = [];
+let news = [];
 
-window.onload = function() {
-    $.ajax({
-        type: 'POST',
-        url: '/company',
-        dataType: "json",
-        contentType: "application/json",
-        success: function(data) {
-            console.log(data);
-        },
-        error: function (data) {
-            alert(data);
+$.ajax({
+    type: 'POST',
+    url: companyURL,
+    success: function(data) {
+        if(data.status === "OK")
+        {
+            company = data.list;
+            CompanyShow();
         }
+        else
+            alert("Не удалось получить данные о компаниях");
+    },
+    error: function (data) {
+        console.log("Error: " + data);
+    }
+});
+$.ajax({
+    type: 'POST',
+    url: newsURL,
+    success: function(data) {
+        if(data.status === "OK")
+        {
+            news = data.list;
+            NewsShow();
+        }
+        else
+            alert("Не удалось получить свежие новости");
+    },
+    error: function (data) {
+        console.log("Error: " + data);
+    }
+});
 
-    });
-};
+function CompanyShow() {
+    $(".preloader-wrap").hide();
+    $(".company-count").text(company.length);
+}
+function NewsShow() {
+    $(".preloader-wrap_news").hide();
+}

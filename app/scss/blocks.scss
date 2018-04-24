@@ -1,11 +1,11 @@
 @import "blocks/register-form/register-form";
+@import "blocks/preloader/preloader";
 
-
-section {
+section[id ^= 'company-'] {
   position: relative;
   height: 250px;
 
-  margin: 20px 5px;
+  margin: 20px 1px;
 
   border: 1px solid #ccc;
   border-radius: 3px;
@@ -17,4 +17,8 @@ section {
   border-radius: 3px;
 }
 
-@import "blocks/preloader/preloader";
+.company-count {
+  border: 1px solid #ccc;
+  border-radius: 50%;
+
+}
