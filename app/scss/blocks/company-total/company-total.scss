@@ -1,0 +1,9 @@
+.company-total {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+
+  @import "element/count";
+
+}

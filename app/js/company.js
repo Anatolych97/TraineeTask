@@ -40,7 +40,7 @@ $.ajax({
 
 function CompanyShow() {
     $(".preloader-wrap").hide();
-    $(".company-count").text(company.length);
+    $(".company-total__count").text(company.length);
 }
 function NewsShow() {
     $(".preloader-wrap_news").hide();

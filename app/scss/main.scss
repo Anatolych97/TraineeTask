@@ -1,6 +1,6 @@
 @import "vars";
-@import "fonts";
 @import "libs";
+@import "fonts";
 @import "blocks";
 ::placeholder {
 	color: #666;
@@ -47,7 +47,3 @@ body {
 b, strong {
 	font-weight: bold;
 }
-
-
-
-@import "media"; // Always at the end
