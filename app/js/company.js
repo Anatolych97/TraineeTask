@@ -1,55 +1,62 @@
 'use strict';
-let companyURL = 'http://codeit.pro/codeitCandidates/serverFrontendTest/company/getList';
-let newsURL = 'http://codeit.pro/codeitCandidates/serverFrontendTest/news/getList';
+import createChart from "./createChart.js";
+function company() {
 
-let company = [];
-let news = [];
+    let companyURL = 'http://codeit.pro/codeitCandidates/serverFrontendTest/company/getList';
+    let company = [];
 
-$.ajax({
-    type: 'POST',
-    url: companyURL,
-    success: function(data) {
-        if(data.status === "OK")
-        {
-            company = data.list;
-            CompanyShow();
+    $.ajax({
+        type: 'POST',
+        url: companyURL,
+        success: function (data) {
+            if (data.status === "OK") {
+                company = data.list;
+                CompanyShow();
+            }
+            else
+                alert("Не удалось получить данные о компаниях");
+        },
+        error: function (data) {
+            console.log("Error: " + data);
         }
-        else
-            alert("Не удалось получить данные о компаниях");
-    },
-    error: function (data) {
-        console.log("Error: " + data);
+    });
+
+    function CompanyShow() {
+        //console.log(company);
+
+        $(".preloader-wrap").hide();
+        fillCompanyTotal();
+        fillCompanyList();
+        createChart(checkCountryCount());
     }
-});
-$.ajax({
-    type: 'POST',
-    url: newsURL,
-    success: function(data) {
-        if(data.status === "OK")
-        {
-            news = data.list;
-            NewsShow();
+
+    function fillCompanyTotal() {
+        $(".company-total__count").text(company.length);
+    }
+    function fillCompanyList() {
+        let list = $("#company-list__scrollbox");
+        for (let i = 0; i < company.length; i++) {
+            list.append("<p><a>" + (company[i].name) + "</a></p>");
+            if (i % 2 === 0)
+                list.children().last().addClass("company-list_bgc");
         }
-        else
-            alert("Не удалось получить свежие новости");
-    },
-    error: function (data) {
-        console.log("Error: " + data);
     }
-});
 
 
-
-function CompanyShow() {
-    $(".preloader-wrap").hide();
-    console.log(company);
-    $(".company-total__count").text(company.length);
-
-    for(let i = 0; i < company.length; i++) {
-        $("#company-list__scrollbox").append("<p>" + (company[i].name) + "</p>");
+    function checkCountryCount() {
+        let countryCount = {};
+        for(let key in company) {
+            if (company[key].location.name in countryCount)
+            {
+                countryCount[company[key].location.name] +=  1;
+            }
+            else {
+                countryCount[company[key].location.name] = 0;
+            }
+        }
+        return countryCount;
     }
+
 
 }
-function NewsShow() {
-    $(".preloader-wrap_news").hide();
-}
+export default company;

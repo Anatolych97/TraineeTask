@@ -1,53 +1,59 @@
-var syntax        = 'scss'; // Syntax: sass or scss;
+let syntax = 'scss'; // Syntax: sass or scss;
 
-var gulp          = require('gulp'),
-		gutil         = require('gulp-util' ),
-		sass          = require('gulp-sass'),
-		browsersync   = require('browser-sync'),
-		concat        = require('gulp-concat'),
-		uglify        = require('gulp-uglify'),
-		cleancss      = require('gulp-clean-css'),
-		rename        = require('gulp-rename'),
-		autoprefixer  = require('gulp-autoprefixer'),
-		notify        = require("gulp-notify");
+const gulp = require('gulp'),
+    gutil = require('gulp-util'),
+    sass = require('gulp-sass'),
+    concat = require('gulp-concat'),
+    uglify = require('gulp-uglify'),
+    cleancss = require('gulp-clean-css'),
+    rename = require('gulp-rename'),
+    autoprefixer = require('gulp-autoprefixer'),
+    notify = require("gulp-notify"),
+    webpack = require('webpack'),
+    webpackStream = require('webpack-stream');
 
-gulp.task('browser-sync', function() {
-	browsersync({
-		server: {
-			baseDir: 'app'
-		},
-		notify: false,
-		// open: false,
-		// tunnel: true,
-		// tunnel: "projectname", //Demonstration page: http://projectname.localtunnel.me
-	})
+gulp.task('scripts', function () {
+    return gulp.src('./app/js/common.js')
+        .pipe(webpackStream({
+            output: {
+                filename: 'scripts.js',
+            },
+            module: {
+                rules: [
+                    {
+                        test: /\.(js)$/,
+                        exclude: /(node_modules)/,
+                        loader: 'babel-loader',
+                        query: {
+                            presets: ['env']
+                        }
+                    }
+                ]
+            },
+            externals: {
+                jquery: 'jQuery',
+                chart: 'chart.js'
+            }
+        }))
+        .pipe(gulp.dest('./public/js'))
+        .pipe(uglify())
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(gulp.dest('./public/js'));
 });
 
-gulp.task('styles', function() {
-	return gulp.src('app/'+syntax+'/**/*.'+syntax+'')
-	.pipe(sass({ outputStyle: 'expand' }).on("error", notify.onError()))
-	.pipe(rename({ suffix: '.min', prefix : '' }))
-	.pipe(autoprefixer(['last 15 versions']))
-	.pipe(cleancss( {level: { 1: { specialComments: 0 } } })) // Opt., comment out when debugging
-	.pipe(gulp.dest('app/css'))
-	.pipe(browsersync.reload( {stream: true} ))
+gulp.task('styles', function () {
+    return gulp.src('app/' + syntax + '/**/*.' + syntax + '')
+        .pipe(sass({outputStyle: 'expand'}).on("error", notify.onError()))
+        .pipe(rename({suffix: '.min', prefix: ''}))
+        .pipe(autoprefixer(['last 15 versions']))
+        .pipe(cleancss({level: {1: {specialComments: 0}}})) // Opt., comment out when debugging
+        .pipe(gulp.dest('public/css'))
 });
 
-gulp.task('js', function() {
-	return gulp.src([
-		'app/libs/jquery/dist/jquery.min.js',
-		'app/js/common.js', // Always at the end
-		])
-	.pipe(concat('scripts.min.js'))
-	// .pipe(uglify()) // Mifify js (opt.)
-	.pipe(gulp.dest('app/js'))
-	.pipe(browsersync.reload({ stream: true }))
-});
 
-gulp.task('watch', ['styles', 'js'], function() {
-	gulp.watch('app/'+syntax+'/**/*.'+syntax, ['styles']);
-	gulp.watch(['libs/**/*.js', 'app/js/common.js'], ['js']);
-	//gulp.watch('app/*.pug', browsersync.reload)
+gulp.task('watch', ['styles', 'scripts'], function () {
+    gulp.watch('app/' + syntax + '/**/*.' + syntax, ['styles']);
+    gulp.watch(['libs/**/*.js', 'app/js/*.js'], ['scripts']);
 });
 
 gulp.task('default', ['watch']);

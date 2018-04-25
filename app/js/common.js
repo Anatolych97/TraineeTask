@@ -1,5 +1,9 @@
-$(function() {
-    console.log("My script start");
-    import("./register.js");
-    import("./company.js");
-});
+import register from "./register.js";
+import company from "./company.js";
+import news from "./news.js";
+
+register();
+company();
+news();
+
+
