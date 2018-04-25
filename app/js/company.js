@@ -38,9 +38,17 @@ $.ajax({
     }
 });
 
+
+
 function CompanyShow() {
     $(".preloader-wrap").hide();
+    console.log(company);
     $(".company-total__count").text(company.length);
+
+    for(let i = 0; i < company.length; i++) {
+        $("#company-list__scrollbox").append("<p>" + (company[i].name) + "</p>");
+    }
+
 }
 function NewsShow() {
     $(".preloader-wrap_news").hide();

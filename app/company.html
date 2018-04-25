@@ -11,34 +11,51 @@
 <body>
 <main class="container">
     <div class="row justify-content-sm-center">
-        <div class="section company-total col-lg">
-            <h3 class="section__title">Total Companies</h3>
-            <div class="preloader-wrap">
-                <div class="preloader"></div>
-            </div>
-            <span class="company-total__count"></span>
-        </div>
-        <div class="section company-list col-lg">
-            <h3 class="section__title text-center">List of Companies</h3>
-            <div class="preloader-wrap">
-                <div class="preloader"></div>
+
+        <div class="col-lg">
+            <div class="section company-total ">
+                <h3 class="section__title text-center">Total Companies</h3>
+                <div class="preloader-wrap">
+                    <div class="preloader"></div>
+                </div>
+                <span class="company-total__count"></span>
             </div>
         </div>
-    </div>
+
+        <div class="col-lg">
+            <div class="section company-list">
+                <h3 class="section__title text-center">List of Companies</h3>
+                <div class="preloader-wrap">
+                    <div class="preloader"></div>
+                </div>
+                <div id = 'company-list__scrollbox' class="company-list__scrollbox">
+                </div>
+            </div>
+        </div>
+
+    </div>  <!-- row -->
+
     <div class="row justify-content-sm-center">
-        <div class="section company-location col-lg">
-            <h3 class="section__title text-center">Companies by Location</h3>
-            <div class="preloader-wrap">
-                <div class="preloader"></div>
+        <div class="col-lg">
+            <div class="section company-location">
+                <h3 class="section__title text-center">Companies by Location</h3>
+                <div class="preloader-wrap">
+                    <div class="preloader"></div>
+                </div>
             </div>
         </div>
-        <div class="section company-news col-lg">
-            <h3 class="section__title text-center">News</h3>
-            <div class="preloader-wrap_news">
-                <div class="preloader preloader"></div>
+
+        <div class="col-lg">
+            <div class="section company-news">
+                <h3 class="section__title text-center">News</h3>
+                <div class="preloader-wrap_news">
+                    <div class="preloader preloader"></div>
+                </div>
             </div>
         </div>
-    </div>
+
+    </div> <!-- row -->
+
 </main>
 <script src="js/scripts.min.js"></script>
 </body>

@@ -1,3 +1,16 @@
 .company-list {
 
+
+  &__scrollbox {
+    width: 90%;
+    height: 80%;
+    overflow: no-content;
+    overflow-x: hidden;
+
+    margin: 0 auto;
+    border: 1px solid black;
+  }
+  p {
+    margin-left: 5%;
+  }
 }
