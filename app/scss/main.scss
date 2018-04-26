@@ -2,48 +2,50 @@
 @import "libs";
 @import "fonts";
 @import "blocks";
-::placeholder {
-	color: #666;
-}
 
+::placeholder {
+  color: #666;
+}
 ::selection {
-	background-color: $accent;
-	color: #fff;
+  background-color: $accent;
+  color: #fff;
 }
 
 body {
-	font-size: 16px;
-	min-width: 320px;
-	position: relative;
-	line-height: 1.65;
-	font-family: $default-font;
-	overflow-x: hidden;
-	color: $text;
-	input, textarea {
-		border: #666 1px solid;
-		outline: none;
-		&:focus:required:invalid {
-			border-color: red;
-		}
-		&:required:valid {
-			border-color: green;
-		}
-	}
+  position: relative;
+  min-width: 320px;
+  overflow-x: hidden;
+
+  font-size: 16px;
+  font-family: $default-font;
+  line-height: 1.65;
+
+  color: $text;
+  background-color: #2c3338;
+
+  input, textarea {
+    border: #666 1px solid;
+    outline: none;
+    &:focus:required:invalid {
+      border-color: red;
+    }
+    &:required:valid {
+      border-color: green;
+    }
+  }
 }
 
 .img-responsive {
-	display: block;
-	max-width: 100%;
-	height: auto;
-	&.img-width {
-		width: 100%;
-	}
+  display: block;
+  max-width: 100%;
+  height: auto;
+  &.img-width {
+    width: 100%;
+  }
 }
-
 .text-center {
-	text-align: center;
+  text-align: center;
 }
-
 b, strong {
-	font-weight: bold;
+  font-weight: bold;
 }

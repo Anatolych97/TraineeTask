@@ -18772,7 +18772,6 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 function register() {
-
     var form = $("#register-form");
     var regURL = 'http://codeit.pro/codeitCandidates/serverFrontendTest/user/registration';
     form.on("submit", function (e) {
@@ -18783,11 +18782,11 @@ function register() {
             url: regURL,
             data: JSON.stringify(form.serializeArray()),
             success: function success(data) {
-                if (data.status === "OK") document.location.href = "./company.html";
-            },
-            error: function error(data) {
-                if (data.status === "Form Error") {
+                if (data.status === "OK") document.location.href = "./company.html";else {
                     switch (data.field) {
+                        case "name":
+                            alert("Field 'name' is required");
+                            break;
                         case "email":
                             alert("Email is not valid");
                             break;
@@ -18795,16 +18794,17 @@ function register() {
                             alert("Field 'gender' is requied");
                             break;
                         case "secondname":
-                            alert("Email is not valid");
+                            alert("Field 'secondname' is required");
                             break;
                     }
-                } else {
-                    console.log(data);
                 }
+            },
+            error: function error() {
+                alert("Ooops! Something wrong!");
             }
         });
     });
-};
+}
 
 exports.default = register;
 

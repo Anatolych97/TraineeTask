@@ -1,0 +1,10 @@
+&__input {
+  @extend .black-style;
+  @extend .item-height;
+  width: 90%;
+  border: none;
+  border-radius: 0 3px 3px 0;
+  padding: 0 10px;
+
+  font-size: 20px;
+}

@@ -1,7 +1,21 @@
-@import "blocks/register-form/register-form";
-@import "blocks/preloader/preloader";
-@import "blocks/section/section";
-@import "blocks/company-total/company-total";
-@import "blocks/company-list/company-list";
-@import "blocks/company-location/company-location";
-@import "blocks/company-canvas/company-canvas";
+.black-style {
+  color: #797e83;
+  background-color: #3b4148;
+}
+.item-height {
+  height: 50px;
+  line-height: 50px;
+}
+.title-style {
+  font-weight: bold;
+  color: white;
+  background-color: #ea4c88;
+}
+
+@import "blocks/register-form/_register-form";
+@import "blocks/preloader/_preloader";
+@import "blocks/section/_section";
+@import "blocks/company-total/_company-total";
+@import "blocks/company-list/_company-list";
+@import "blocks/company-location/_company-location";
+@import "blocks/company-canvas/_company-canvas";

@@ -1,0 +1,47 @@
+.register-form {
+  padding: 25px;
+  background-color: rgba(#d5d2d2, .7);
+  border: 1px solid #ccc;
+  font-family: Roboto, serif;
+
+  @import "element/item";
+  @import "element/icon";
+  @import "element/input";
+
+  label {
+    float: left;
+  }
+  select {
+    @extend .black-style;
+    @extend .item-height;
+    width: 100%;
+    border: none;
+    border-radius: 0 3px 3px 0;
+    padding: 0 16px;
+  }
+
+  input[type="checkbox"] {
+    height: 15px;
+    border: none;
+    color: #eee;
+    background-color: #ea4c88;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    &:hover {
+      background-color: #d44179;
+    }
+  }
+  input[type="submit"] {
+    @extend .item-height;
+    border-radius: 3px;
+    background-color: #ea4c88;
+    color: #eee;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    &:hover {
+      background-color: #d44179;
+    }
+  }
+}
