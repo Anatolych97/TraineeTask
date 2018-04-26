@@ -1,31 +1,27 @@
 .company-list {
 
-
   &__scrollbox {
-    width: 90%;
-    height: 80%;
-    overflow: no-content;
+    height: 100%;
+    overflow: scroll;
     overflow-x: hidden;
-
     margin: 0 auto;
-    border: 1px solid black;
   }
   p {
     margin: 0;
     padding-left: 5%;
     &:hover {
-      background-color: cadetblue;
+      background-color: $accent;
     }
   }
   p a {
     display: block;
-    color: black;
+    color: $text;
     text-decoration: none;
     cursor: pointer;
   }
 
   &_bgc {
-    background-color: #eee;
+    background-color: $list-bgc;
   }
 
 }

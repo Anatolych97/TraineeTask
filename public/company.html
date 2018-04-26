@@ -2,65 +2,88 @@
 <html>
 <head>
     <title>Company news</title>
-    <meta charset="utf-8">
-    <meta name="description" content="CodeIT">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/main.min.css">
+    <meta charset='utf-8'>
+    <meta name='description' content='CodeIT'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='css/main.min.css'>
 </head>
 <body>
-<main class="container">
-    <div class="row justify-content-sm-center">
+<main class='container'>
+    <div class='row justify-content-sm-center d-flex align-content-center'>
 
-        <div class="col-lg">
-            <div class="section company-total ">
-                <h3 class="title-style text-center">Total Companies</h3>
-                <div class="preloader-wrap">
-                    <div class="preloader"></div>
+        <div class='col-lg'>
+            <h3 class='title-style text-center'>Total Companies</h3>
+            <div class='section company-total '>
+                <div class='preloader-wrap'>
+                    <div class='preloader'></div>
                 </div>
-                <span class="company-total__count"></span>
+                <span class='section__content company-total__count'></span>
             </div>
         </div>
 
-        <div class="col-lg">
-            <div class="section company-list">
-                <h3 class="title-style text-center">List of Companies</h3>
-                <div class="preloader-wrap">
-                    <div class="preloader"></div>
+        <div class='col-lg'>
+            <h3 class='title-style text-center'>List of Companies</h3>
+            <div class='section company-list'>
+                <div class='preloader-wrap'>
+                    <div class='preloader'></div>
                 </div>
-                <div id='company-list__scrollbox' class="company-list__scrollbox">
-                </div>
+                <div id='company-list__scrollbox' class='section__content company-list__scrollbox'></div>
             </div>
         </div>
+    </div>
 
     </div>  <!-- row -->
 
-    <div class="row justify-content-sm-center">
-        <div class="col-lg">
-            <div class="section company-location">
-                <h3 class="title-style text-center">Companies by Location</h3>
-                <div class="preloader-wrap">
-                    <div class="preloader"></div>
+    <div class='row justify-content-sm-center'>
+        <div class='col-lg'>
+            <h3 class='title-style text-center'>Companies by Location</h3>
+            <div class='section company-location'>
+                <div class='preloader-wrap'>
+                    <div class='preloader'></div>
                 </div>
-                <div class="company-canvas-container">
-                    <canvas id="company-canvas"></canvas>
+                <div class='section__content company-canvas-container'>
+                    <canvas id='company-canvas'></canvas>
                 </div>
             </div>
         </div>
 
-        <div class="col-lg">
-            <div class="section company-news">
-                <h3 class="title-style text-center">News</h3>
-                <div class="preloader-wrap_news">
-                    <div class="preloader"></div>
+        <div class='col-lg'>
+            <h3 class='title-style text-center'>News</h3>
+            <div class='section news'>
+                <div class='preloader-wrap'>
+                    <div class='preloader'></div>
                 </div>
+                <div id="news-slider" class='section__content news-slider'>
+                    <div class='news-slider__top-zone'>
+                        <figure class="news-slider__img-wrap">
+                            <img id='slider-img' src='#' alt='#' class='news-slider__img'>
+                        </figure>
+                        <div class='news-slider__desc'>
+                            <h4 id="slider-title" class="news-slider__title"><a href="#">Title</a></h4>
+                            <p id="slider-text" class="news-slider__text">
+                                Lorem ipsum dolor sit amet.
+                                Lorem ipsum dolor sit amet.
+                                Lorem ipsum dolor sit amet.
+                                Lorem ipsum dolor sit amet.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="news-slider__info">
+                        <span id='slider-author' class='news-slider__author'></span>
+                        <span id="slider-date" class="news-slider__date"></span>
+                    </div>
+                </div>
+                <ul id='slider-nav' class='news-slider__nav'>
+                </ul>
             </div>
         </div>
 
     </div> <!-- row -->
 
 </main>
-<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="js/scripts.min.js"></script>
+<script src='http://code.jquery.com/jquery-3.3.1.min.js'></script>
+<script src='js/scripts.min.js'></script>
 </body>
 </html>

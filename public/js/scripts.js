@@ -18834,33 +18834,34 @@ function company() {
         type: 'POST',
         url: companyURL,
         success: function success(data) {
-            if (data.status === "OK") {
+            if (data.status === 'OK') {
                 company = data.list;
                 CompanyShow();
-            } else alert("Не удалось получить данные о компаниях");
+            } else alert('Не удалось получить данные о компаниях');
         },
         error: function error(data) {
-            console.log("Error: " + data);
+            console.log('Error: ' + data);
         }
     });
 
     function CompanyShow() {
         //console.log(company);
 
-        $(".preloader-wrap").hide();
+        $('.preloader-wrap').hide();
+        $('.section__content').show();
         fillCompanyTotal();
         fillCompanyList();
         (0, _createChart2.default)(checkCountryCount());
     }
 
     function fillCompanyTotal() {
-        $(".company-total__count").text(company.length);
+        $('.company-total__count').text(company.length);
     }
     function fillCompanyList() {
-        var list = $("#company-list__scrollbox");
+        var list = $('#company-list__scrollbox');
         for (var i = 0; i < company.length; i++) {
-            list.append("<p><a>" + company[i].name + "</a></p>");
-            if (i % 2 === 0) list.children().last().addClass("company-list_bgc");
+            list.append('<p><a>' + company[i].name + '</a></p>');
+            if (i % 2 === 0) list.children().last().addClass('company-list_bgc');
         }
     }
 
@@ -31583,23 +31584,79 @@ Object.defineProperty(exports, "__esModule", {
 });
 function news() {
     var newsURL = 'http://codeit.pro/codeitCandidates/serverFrontendTest/news/getList';
+    /* {
+          author: "",
+          date: "",
+          link: "",
+          description: "",
+          img: "'
+    }*/
     var news = [];
+    var img = $('#slider-img');
+    var author = $('#slider-author');
+    var date = $('#slider-date');
+    var text = $('#slider-text');
+    var title = $("#slider-title");
 
     $.ajax({
         type: 'POST',
         url: newsURL,
         success: function success(data) {
-            if (data.status === "OK") {
+            if (data.status === 'OK') {
                 news = data.list;
                 newsShow();
-            } else alert("Не удалось получить свежие новости");
+            } else alert('Не удалось получить свежие новости');
         },
         error: function error(data) {
-            console.log("Error: " + data);
+            console.log('Error: ' + data);
         }
     });
+
     function newsShow() {
-        $(".preloader-wrap_news").hide();
+        $('.company-news .preloader-wrap').hide();
+        $('.company-news .section__content').show();
+        createNav();
+        fillSlider(0);
+        selectNewsItem();
+    }
+
+    function timeConverter(UNIX_timestamp) {
+        var a = new Date(UNIX_timestamp * 1000);
+        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        var year = a.getFullYear();
+        var month = months[a.getMonth()];
+        var date = a.getDate();
+        var hour = a.getHours();
+        var min = a.getMinutes();
+        var sec = a.getSeconds();
+        var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
+        return time;
+    }
+
+    function fillSlider(num) {
+        img.attr('src', news[+num].img);
+        img.attr('alt', news[+num].link);
+        title.children().eq(0).attr('href', news[+num].link);
+        author.text(news[+num].author);
+        date.text(timeConverter(news[+num].date));
+        text.text(function () {
+            if (news[+num].description.length > 200) return news[+num].description.slice(0, 200) + "...";else return news[+num].description;
+        });
+    }
+
+    function createNav() {
+        var nav = $("#slider-nav");
+        for (var i = 0; i < news.length; i++) {
+            nav.append('<li><a href = "' + i + '" class = "news-slider__nav-item"></a></li>');
+        }
+    }
+
+    function selectNewsItem() {
+        var item = $("#slider-nav a");
+        item.on('click', function (e) {
+            e.preventDefault();
+            fillSlider($(this).attr('href'));
+        });
     }
 }
 

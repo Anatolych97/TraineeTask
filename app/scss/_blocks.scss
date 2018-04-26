@@ -8,8 +8,10 @@
 }
 .title-style {
   font-weight: bold;
+  margin-top: 5%;
+  margin-bottom: 0;
   color: white;
-  background-color: #ea4c88;
+  background-color: $title-bgc;
 }
 
 @import "blocks/register-form/_register-form";
@@ -19,3 +21,4 @@
 @import "blocks/company-list/_company-list";
 @import "blocks/company-location/_company-location";
 @import "blocks/company-canvas/_company-canvas";
+@import "blocks/news/news.scss";

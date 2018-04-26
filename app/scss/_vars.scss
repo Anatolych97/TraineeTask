@@ -1,6 +1,15 @@
-$default-font: "roboto-example", sans-serif;
+$default-font: Roboto, serif;
 $accent: orange;
+
+//colors
 $text: #333;
+$border-circle: #636363;
+
+//background-colors
+$title-bgc: #ea4c88;
+$section-bgc: #d9d9d9;
+$list-bgc: #eee;
+
 
 // Customization Bootstrap vars from "app/libs/bootstrap/scss/_variables.scss"
 $grid-gutter-width: 30px;

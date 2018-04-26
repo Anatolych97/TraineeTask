@@ -1,5 +1,5 @@
 'use strict';
-import createChart from "./createChart.js";
+import createChart from './createChart.js';
 function company() {
 
     let companyURL = 'http://codeit.pro/codeitCandidates/serverFrontendTest/company/getList';
@@ -9,36 +9,37 @@ function company() {
         type: 'POST',
         url: companyURL,
         success: function (data) {
-            if (data.status === "OK") {
+            if (data.status === 'OK') {
                 company = data.list;
                 CompanyShow();
             }
             else
-                alert("Не удалось получить данные о компаниях");
+                alert('Не удалось получить данные о компаниях');
         },
         error: function (data) {
-            console.log("Error: " + data);
+            console.log('Error: ' + data);
         }
     });
 
     function CompanyShow() {
         //console.log(company);
 
-        $(".preloader-wrap").hide();
+        $('.preloader-wrap').hide();
+        $('.section__content').show();
         fillCompanyTotal();
         fillCompanyList();
         createChart(checkCountryCount());
     }
 
     function fillCompanyTotal() {
-        $(".company-total__count").text(company.length);
+        $('.company-total__count').text(company.length);
     }
     function fillCompanyList() {
-        let list = $("#company-list__scrollbox");
+        let list = $('#company-list__scrollbox');
         for (let i = 0; i < company.length; i++) {
-            list.append("<p><a>" + (company[i].name) + "</a></p>");
+            list.append('<p><a>' + (company[i].name) + '</a></p>');
             if (i % 2 === 0)
-                list.children().last().addClass("company-list_bgc");
+                list.children().last().addClass('company-list_bgc');
         }
     }
 
