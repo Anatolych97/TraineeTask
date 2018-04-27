@@ -15,6 +15,7 @@ function news() {
     let date = $('#slider-date');
     let text = $('#slider-text');
     let title = $("#slider-title");
+    let currentSlide = 0;
 
     $.ajax({
         type: 'POST',
@@ -40,19 +41,21 @@ function news() {
         selectNewsItem();
     }
 
+    //Convert Unixtime to date-time string
     function timeConverter(UNIX_timestamp){
         let a = new Date(UNIX_timestamp * 1000);
-        let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        //let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
         let year = a.getFullYear();
-        let month = months[a.getMonth()];
+        let month = a.getMonth();
         let date = a.getDate();
-        let hour = a.getHours();
-        let min = a.getMinutes();
-        let sec = a.getSeconds();
-        let time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+        // let hour = a.getHours();
+        // let min = a.getMinutes();
+        // let sec = a.getSeconds();
+
+        let time = date + '.' + month + '.' + year;
         return time;
     }
-    
+    //Show new information on slider
     function fillSlider(num) {
         img.attr('src', news[+num].img);
         img.attr('alt', news[+num].link);
@@ -69,16 +72,19 @@ function news() {
 
     function createNav() {
         let nav = $("#slider-nav");
-        for (let i = 0; i < news.length; i++) {
-            nav.append(`<li><a href = "${i}" class = "news-slider__nav-item"></a></li>`);
-        }
+            nav.append(`<li><a href = "#-1" class = "news-slider__nav-item"></a></li>`);
+            nav.append(`<li><a href = "#0" class = "news-slider__nav-item"></a></li>`);
+            nav.append(`<li><a href = "#+1" class = "news-slider__nav-item"></a></li>`);
     }
 
     function selectNewsItem() {
         let item = $("#slider-nav a");
         item.on('click', function (e) {
             e.preventDefault();
-            fillSlider($(this).attr('href'));
+            currentSlide = currentSlide + +$(this).attr('href').split('#')[1];
+            if(currentSlide >= news.length || currentSlide < 0)
+                currentSlide = 0;
+            fillSlider(currentSlide);
         });
     }
 }

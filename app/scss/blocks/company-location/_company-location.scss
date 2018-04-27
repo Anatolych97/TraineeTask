@@ -1,2 +1,17 @@
 .company-location {
-  position: relative;}
+
+}
+#company-location-scrollbox {
+  display: none;
+
+  p:first-child {
+    text-align: center;
+    font-weight: bold;
+    margin: 10px 0;
+    background-color: $list-bgc;
+  }
+  P:first-child:hover {
+    background-color: $list-bgc;
+  }
+
+}

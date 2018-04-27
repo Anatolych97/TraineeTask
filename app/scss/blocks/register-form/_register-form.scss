@@ -1,8 +1,8 @@
 .register-form {
-  padding: 25px;
+  padding: 20px;
   background-color: rgba(#d5d2d2, .7);
-  border: 1px solid #ccc;
   font-family: Roboto, serif;
+  box-shadow: rgba(#000 , .5) 2px 10px 8px 4px;
 
   @import "element/item";
   @import "element/icon";

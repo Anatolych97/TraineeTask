@@ -18829,7 +18829,7 @@ function company() {
 
     var companyURL = 'http://codeit.pro/codeitCandidates/serverFrontendTest/company/getList';
     var company = [];
-
+    var backButton = $('#button-back'); //Кнопка скрывает список стран и включает диаграмму
     $.ajax({
         type: 'POST',
         url: companyURL,
@@ -18844,21 +18844,50 @@ function company() {
         }
     });
 
+    //Точка входа после загрузки данных
     function CompanyShow() {
-        //console.log(company);
-
         $('.preloader-wrap').hide();
         $('.section__content').show();
         fillCompanyTotal();
         fillCompanyList();
-        (0, _createChart2.default)(checkCountryCount());
+        (0, _createChart2.default)(checkCountryCount(), showCompanyFromCountry);
+        backButton.on('click', returnDiagram);
+    }
+
+    //Функционал кнопки, которая скрывает список стран и показывает диаграмму
+    function returnDiagram(e) {
+        e.preventDefault();
+        $('#company-location-scrollbox').hide().empty();
+        $('.company-canvas-container').show();
+        $('#company-canvas-legend').show();
+        $('#button-back').hide();
+    }
+
+    //Список, который открывается после нажатия на легенду диаграммы
+    function showCompanyFromCountry() {
+
+        var name = $(this).text(); //Текст ссылки, которая указывает на страну
+        var list = $('#company-location-scrollbox');
+
+        list.append('<p>' + name + '</p>');
+        for (var i = 0; i < company.length; i++) {
+            if (company[i].location.name === name) {
+                list.append('<p>' + company[i].name + '</p>');
+            }
+        }
+
+        $('.company-canvas-container').hide();
+        $('#company-canvas-legend').hide();
+        $('#button-back').show();
+        list.show();
     }
 
     function fillCompanyTotal() {
         $('.company-total__count').text(company.length);
     }
+
     function fillCompanyList() {
-        var list = $('#company-list__scrollbox');
+        var list = $('#company-list-scrollbox');
         for (var i = 0; i < company.length; i++) {
             list.append('<p><a>' + company[i].name + '</a></p>');
             if (i % 2 === 0) list.children().last().addClass('company-list_bgc');
@@ -18877,6 +18906,7 @@ function company() {
         return countryCount;
     }
 }
+
 exports.default = company;
 
 /***/ }),
@@ -18896,14 +18926,16 @@ var _chart2 = _interopRequireDefault(_chart);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function createChart(country) {
+function createChart(country, showList) {
     var ctx = $('#company-canvas');
+    var colors = ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 206, 86)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)', 'rgb(255, 159, 64)'];
+
     var data = {
         labels: getNames(),
         datasets: [{
             data: getData(),
-            backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)'],
-            borderColor: ['rgba(255,99,132,1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)'],
+            backgroundColor: colors,
+            borderColor: colors,
             borderWidth: 1
         }]
     };
@@ -18914,7 +18946,8 @@ function createChart(country) {
             labels: {
                 fontColor: 'rgb(255, 99, 132)'
             }
-        }
+        },
+        onClick: showList
     };
     var chart = new _chart2.default(ctx, {
         type: 'pie',
@@ -18922,6 +18955,16 @@ function createChart(country) {
         options: options
     });
 
+    //Создаю легенду для диаграмммы, и на каждую ссылку привязываю действие
+    (function createLegend() {
+        var names = getNames();
+        for (var i = 0; i < names.length; i++) {
+            $('#company-canvas-legend').append('<li><a><span style="background-color: ' + colors[i] + ';"></span>' + names[i] + '</a></li>');
+        }
+        $('#company-canvas-legend a').on('click', showList);
+    })();
+
+    //Создаю массив имен из массива объектов-стран
     function getNames() {
         var names = [];
         var i = 0;
@@ -18929,7 +18972,7 @@ function createChart(country) {
             names[i++] = key;
         }return names;
     }
-
+    //Создаю массив значений, сколько раз повторяется каждая страна
     function getData() {
         var data = [];
         var i = 0;
@@ -31597,6 +31640,7 @@ function news() {
     var date = $('#slider-date');
     var text = $('#slider-text');
     var title = $("#slider-title");
+    var currentSlide = 0;
 
     $.ajax({
         type: 'POST',
@@ -31620,19 +31664,21 @@ function news() {
         selectNewsItem();
     }
 
+    //Convert Unixtime to date-time string
     function timeConverter(UNIX_timestamp) {
         var a = new Date(UNIX_timestamp * 1000);
-        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        //let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
         var year = a.getFullYear();
-        var month = months[a.getMonth()];
+        var month = a.getMonth();
         var date = a.getDate();
-        var hour = a.getHours();
-        var min = a.getMinutes();
-        var sec = a.getSeconds();
-        var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
+        // let hour = a.getHours();
+        // let min = a.getMinutes();
+        // let sec = a.getSeconds();
+
+        var time = date + '.' + month + '.' + year;
         return time;
     }
-
+    //Show new information on slider
     function fillSlider(num) {
         img.attr('src', news[+num].img);
         img.attr('alt', news[+num].link);
@@ -31646,16 +31692,18 @@ function news() {
 
     function createNav() {
         var nav = $("#slider-nav");
-        for (var i = 0; i < news.length; i++) {
-            nav.append('<li><a href = "' + i + '" class = "news-slider__nav-item"></a></li>');
-        }
+        nav.append('<li><a href = "#-1" class = "news-slider__nav-item"></a></li>');
+        nav.append('<li><a href = "#0" class = "news-slider__nav-item"></a></li>');
+        nav.append('<li><a href = "#+1" class = "news-slider__nav-item"></a></li>');
     }
 
     function selectNewsItem() {
         var item = $("#slider-nav a");
         item.on('click', function (e) {
             e.preventDefault();
-            fillSlider($(this).attr('href'));
+            currentSlide = currentSlide + +$(this).attr('href').split('#')[1];
+            if (currentSlide >= news.length || currentSlide < 0) currentSlide = 0;
+            fillSlider(currentSlide);
         });
     }
 }

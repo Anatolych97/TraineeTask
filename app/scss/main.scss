@@ -1,15 +1,8 @@
 @import "vars";
+@import "helpers";
 @import "libs";
 @import "fonts";
 @import "blocks";
-
-::placeholder {
-  color: #666;
-}
-::selection {
-  background-color: $accent;
-  color: #fff;
-}
 
 body {
   position: relative;
@@ -22,28 +15,6 @@ body {
 
   color: $text;
   background-color: #2c3338;
-
-  input, textarea {
-    border: #666 1px solid;
-    outline: none;
-    &:focus:required:invalid {
-      border-color: red;
-    }
-    &:required:valid {
-      border-color: green;
-    }
-  }
 }
 
-a {
-  text-decoration: none;
-  color: $text;
-  cursor: pointer;
-}
 
-.text-center {
-  text-align: center;
-}
-b, strong {
-  font-weight: bold;
-}

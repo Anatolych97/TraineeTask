@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <title>Company news</title>
     <meta charset='utf-8'>
     <meta name='description' content='CodeIT'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="css/font-awesome/css/fontawesome-all.min.css">
     <link rel='stylesheet' href='css/main.min.css'>
 </head>
 <body>
@@ -28,23 +29,23 @@
                 <div class='preloader-wrap'>
                     <div class='preloader'></div>
                 </div>
-                <div id='company-list__scrollbox' class='section__content company-list__scrollbox'></div>
+                <div id='company-list-scrollbox' class='section__content company-list__scrollbox'></div>
             </div>
         </div>
-    </div>
-
-    </div>  <!-- row -->
+    </div><!-- row -->
 
     <div class='row justify-content-sm-center'>
         <div class='col-lg'>
-            <h3 class='title-style text-center'>Companies by Location</h3>
+            <h3 class='title-style text-center'>Companies by Location <a href="#" id="button-back" style = "display: none"><span class="fas fa-arrow-left"></span></a></h3>
             <div class='section company-location'>
                 <div class='preloader-wrap'>
                     <div class='preloader'></div>
                 </div>
-                <div class='section__content company-canvas-container'>
-                    <canvas id='company-canvas'></canvas>
-                </div>
+                <div class="company-canvas-container">
+                        <canvas id='company-canvas'></canvas>
+                        <ul id = "company-canvas-legend" class="company-canvas-legend"></ul>
+                    </div>
+                <div id='company-location-scrollbox' class='company-list company-list__scrollbox'></div>
             </div>
         </div>
 
@@ -61,12 +62,7 @@
                         </figure>
                         <div class='news-slider__desc'>
                             <h4 id="slider-title" class="news-slider__title"><a href="#">Title</a></h4>
-                            <p id="slider-text" class="news-slider__text">
-                                Lorem ipsum dolor sit amet.
-                                Lorem ipsum dolor sit amet.
-                                Lorem ipsum dolor sit amet.
-                                Lorem ipsum dolor sit amet.
-                            </p>
+                            <p id="slider-text" class="news-slider__text"></p>
                         </div>
                     </div>
 
