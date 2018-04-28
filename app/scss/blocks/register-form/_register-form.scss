@@ -21,27 +21,19 @@
   }
 
   input[type="checkbox"] {
-    height: 15px;
-    border: none;
-    color: #eee;
-    background-color: #ea4c88;
-    font-weight: bold;
-    text-transform: uppercase;
-
-    &:hover {
-      background-color: #d44179;
-    }
+    float: left;
+    margin: 7px;
   }
   input[type="submit"] {
     @extend .item-height;
     border-radius: 3px;
-    background-color: #ea4c88;
+    background-color: rgba($value-bgc, .8);
     color: #eee;
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
     &:hover {
-      background-color: #d44179;
+      background-color: $value-bgc;
     }
   }
 }

@@ -4,4 +4,5 @@ function companyTotal(length) {
     //Выводу количество компаний в первую секцию
     $('.company-total__count').text(length);
 }
+
 export default companyTotal;

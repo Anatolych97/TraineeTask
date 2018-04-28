@@ -4,12 +4,12 @@ let partners = [];
 function section_5_partners(event) {
     event.preventDefault();
     let company = event.data;
+    setTimeout(200);
     $('#partners-row').show();
     for (let i = 0; i < company.length; i++) {
         if (company[i].name === $(this).text()) {
-            for (let j = 0; j < company[i].partners.length; j++)
-            {
-                partners[j] = { name: company[i].partners[j].name, value: company[i].partners[j].value };
+            for (let j = 0; j < company[i].partners.length; j++) {
+                partners[j] = {name: company[i].partners[j].name, value: company[i].partners[j].value};
             }
         }
     }
@@ -21,8 +21,8 @@ function render() {
     let sortName = $('#sortName'),
         sortValue = $('#sortValue');
 
-    if(sortName.attr('data-active') === '1') {
-        if(sortName.attr('data-sort') === '1') {
+    if (sortName.attr('data-active') === '1') {
+        if (sortName.attr('data-sort') === '1') {
             partners.sort((a, b) => {
                 return a.name > b.name;
             });
@@ -33,8 +33,8 @@ function render() {
             });
         }
     }
-    if(sortValue.attr('data-active') === '1'){
-        if(sortValue.attr('data-sort') === '0') {
+    if (sortValue.attr('data-active') === '1') {
+        if (sortValue.attr('data-sort') === '0') {
             partners.sort((a, b) => {
                 return a.value - b.value;
             });
@@ -45,8 +45,11 @@ function render() {
             });
         }
     }
-    for(let item in partners)
-        $('#company-partners__list').append(`<p>${partners[item].name}  ${partners[item].value}</p>`)
+    for (let item in partners)
+        $('#company-partners__list').append(`<p class = 'company-partners__item'>` +
+                                                `<span class = 'company-partners__item-name'>${partners[item].name}</span>` +
+                                                `<span class = 'company-partners__item-value'>${partners[item].value}%</span>`+
+                                            `</p>`);
 }
 
 

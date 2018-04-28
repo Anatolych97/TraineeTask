@@ -1,5 +1,6 @@
 'use strict';
 import {list} from './section_5_partners.js';
+
 function section_5_sortType() {
 
     let sortName = $('#sortName'),
@@ -23,6 +24,7 @@ function section_5_sortType() {
         }
         list();
     }
+
     function sortByValue(e) {
         e.preventDefault();
         sortValue.attr('data-active', '1');

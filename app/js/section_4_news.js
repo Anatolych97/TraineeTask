@@ -73,9 +73,8 @@ function section_4_news() {
 
     function createNav() {
         let nav = $("#slider-nav");
-        nav.append(`<li><a href = "#" class = "news-slider__nav-item" data-value="-1"></a></li>`);
-        nav.append(`<li><a href = "#" class = "news-slider__nav-item" data-value="0"></a></li>`);
-        nav.append(`<li><a href = "#" class = "news-slider__nav-item" data-value="+1"></a></li>`);
+        nav.append(`<li><a href = "#" class = "news-slider__nav-item" data-value="-1"><span class = 'fa fa-arrow-left'></span></a></li>`);
+        nav.append(`<li><a href = "#" class = "news-slider__nav-item" data-value="+1"><span class = 'fa fa-arrow-right'></span></a></li>`);
     }
 
     function selectNewsItem() {

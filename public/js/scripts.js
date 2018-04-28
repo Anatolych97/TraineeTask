@@ -18751,6 +18751,7 @@ var partners = [];
 function section_5_partners(event) {
     event.preventDefault();
     var company = event.data;
+    setTimeout(200);
     $('#partners-row').show();
     for (var i = 0; i < company.length; i++) {
         if (company[i].name === $(this).text()) {
@@ -18790,7 +18791,7 @@ function render() {
         }
     }
     for (var item in partners) {
-        $('#company-partners__list').append('<p>' + partners[item].name + '  ' + partners[item].value + '</p>');
+        $('#company-partners__list').append('<p class = \'company-partners__item\'>' + ('<span class = \'company-partners__item-name\'>' + partners[item].name + '</span>') + ('<span class = \'company-partners__item-value\'>' + partners[item].value + '%</span>') + '</p>');
     }
 }
 
@@ -18818,9 +18819,7 @@ var _section_4_news2 = _interopRequireDefault(_section_4_news);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// if(document.location.href.indexOf('register-form'))
-//     register();
-// else {
+(0, _register2.default)();
 (0, _company2.default)();
 (0, _section_4_news2.default)();
 
@@ -18933,6 +18932,7 @@ function company() {
         (0, _section_1_companyTotal2.default)(company.length);
 
         (0, _section_2_companyList2.default)(company);
+        //Привязывю отображение партнеров по нажатию на элемент списка
         $('#company-list-scrollbox').children('p').on('click', company, _section_5_partners.part);
 
         (0, _section_3_createDiagram2.default)(checkCountryCount());
@@ -18985,6 +18985,7 @@ function companyTotal(length) {
     //Выводу количество компаний в первую секцию
     $('.company-total__count').text(length);
 }
+
 exports.default = companyTotal;
 
 /***/ }),
@@ -31779,6 +31780,7 @@ function section_5_sortType() {
         }
         (0, _section_5_partners.list)();
     }
+
     function sortByValue(e) {
         e.preventDefault();
         sortValue.attr('data-active', '1');
@@ -31875,9 +31877,8 @@ function section_4_news() {
 
     function createNav() {
         var nav = $("#slider-nav");
-        nav.append('<li><a href = "#" class = "news-slider__nav-item" data-value="-1"></a></li>');
-        nav.append('<li><a href = "#" class = "news-slider__nav-item" data-value="0"></a></li>');
-        nav.append('<li><a href = "#" class = "news-slider__nav-item" data-value="+1"></a></li>');
+        nav.append('<li><a href = "#" class = "news-slider__nav-item" data-value="-1"><span class = \'fa fa-arrow-left\'></span></a></li>');
+        nav.append('<li><a href = "#" class = "news-slider__nav-item" data-value="+1"><span class = \'fa fa-arrow-right\'></span></a></li>');
     }
 
     function selectNewsItem() {
