@@ -6,13 +6,10 @@
   height: 36px;
   margin: -18px 0 0 -18px;
   border-radius: 50%;
-  border: 2px solid;
-  border-top-color: rgba(34, 34, 34, 1);
-  border-bottom-color: rgba(0, 0, 0, 0.15);
-  border-left-color: rgba(34, 34, 34, 1);
+  border: 2px solid rgba(34, 34, 34, 1);
   border-right-color: rgba(0, 0, 0, 0.15);
+  border-bottom-color: rgba(0, 0, 0, 0.15);
   animation: move 0.8s linear infinite;
-
   &-wrap {
     height: 100%;
     width: 100%;

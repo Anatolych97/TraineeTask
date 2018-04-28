@@ -6,16 +6,17 @@
   min-width: 80%;
   max-width: 80%;
 }
+
 .company-canvas-legend {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
   align-items: start;
-  list-style: none;
-  padding: 0;
   margin: 15px 10%;
+  padding: 0;
+  list-style: none;
 
-  //фон прописан в функции, которая создает диаграмму
+  //Фон прописан в функции, которая создает диаграмму
   span {
     display: inline-block;
     height: 15px;
@@ -25,8 +26,8 @@
 
   a {
     padding: 5px;
-  }
-  a:hover {
-    background-color: rgba($accent, .5);
+    &:hover {
+      background-color: rgba($accent, .5);
+    }
   }
 }

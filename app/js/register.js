@@ -1,8 +1,8 @@
 'use strict';
 
 function register() {
-    let form = $("#register-form");
-    let regURL = 'http://codeit.pro/codeitCandidates/serverFrontendTest/user/registration';
+    let form = $("#register-form"),
+        regURL = 'http://codeit.pro/codeitCandidates/serverFrontendTest/user/registration';
     form.on("submit", function (e) {
         e.preventDefault();
 

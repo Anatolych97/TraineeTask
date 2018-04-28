@@ -1,8 +1,8 @@
 function section_3_diagramFunction(event) {
     /*Секция 3*/
     //Список, который открывается после нажатия на легенду диаграммы
-    let name = $(this).text(); //Текст ссылки, которая указывает на страну
-    let list = $('#company-location-scrollbox');
+    let name = $(this).text(), //Текст ссылки, которая указывает на страну
+        list = $('#company-location-scrollbox');
     list.append(`<p>${name}</p>`);
     for (let i = 0; i < event.data.length; i++) {
         if (event.data[i].location.name === name) {

@@ -8,11 +8,10 @@ import {part} from './section_5_partners.js';
 
 function company() {
 
-    let companyURL = 'http://codeit.pro/codeitCandidates/serverFrontendTest/company/getList';
-    let company = [];
+    let companyURL = 'http://codeit.pro/codeitCandidates/serverFrontendTest/company/getList',
+        company = [];
 
     $.ajax({
-        type: 'POST',
         url: companyURL,
         success: function (data) {
             if (data.status === 'OK') {
@@ -38,14 +37,12 @@ function company() {
         //Привязывю отображение партнеров по нажатию на элемент списка
         $('#company-list-scrollbox').children('p').on('click', company, part);
 
-
         createDiagram(checkCountryCount());
         $('#company-canvas-legend a').on('click', company, diagramFunc);
         //Кнопка скрывает список стран и включает диаграмму
         $('#button-back').on('click', returnDiagram);
         sortType();
     }
-
     //Функционал кнопки, которая скрывает список стран и показывает диаграмму
     function returnDiagram(e) {
         e.preventDefault();
@@ -54,9 +51,7 @@ function company() {
         $('#company-canvas-legend').show();
         $('#button-back').hide();
     }
-
     /*Вспомогательные функции*/
-
     //Создаю объект, который хранит количество компаний в каждой стране
     function checkCountryCount() {
         let countryCount = {};

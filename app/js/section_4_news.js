@@ -9,16 +9,15 @@ function section_4_news() {
           description: "",
           img: "'
     }*/
-    let news = [];
-    let img = $('#slider-img');
-    let author = $('#slider-author');
-    let date = $('#slider-date');
-    let text = $('#slider-text');
-    let title = $("#slider-title");
-    let currentSlide = 0;
+    let news = [],
+        img = $('#slider-img'),
+        author = $('#slider-author'),
+        date = $('#slider-date'),
+        text = $('#slider-text'),
+        title = $("#slider-title"),
+        currentSlide = 0;
 
     $.ajax({
-        type: 'POST',
         url: newsURL,
         success: function (data) {
             if (data.status === 'OK') {

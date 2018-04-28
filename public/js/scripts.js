@@ -18834,8 +18834,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 function register() {
-    var form = $("#register-form");
-    var regURL = 'http://codeit.pro/codeitCandidates/serverFrontendTest/user/registration';
+    var form = $("#register-form"),
+        regURL = 'http://codeit.pro/codeitCandidates/serverFrontendTest/user/registration';
     form.on("submit", function (e) {
         e.preventDefault();
 
@@ -18907,11 +18907,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function company() {
 
-    var companyURL = 'http://codeit.pro/codeitCandidates/serverFrontendTest/company/getList';
-    var company = [];
+    var companyURL = 'http://codeit.pro/codeitCandidates/serverFrontendTest/company/getList',
+        company = [];
 
     $.ajax({
-        type: 'POST',
         url: companyURL,
         success: function success(data) {
             if (data.status === 'OK') {
@@ -18941,7 +18940,6 @@ function company() {
         $('#button-back').on('click', returnDiagram);
         (0, _section_5_sortButtons2.default)();
     }
-
     //Функционал кнопки, которая скрывает список стран и показывает диаграмму
     function returnDiagram(e) {
         e.preventDefault();
@@ -18950,9 +18948,7 @@ function company() {
         $('#company-canvas-legend').show();
         $('#button-back').hide();
     }
-
     /*Вспомогательные функции*/
-
     //Создаю объект, который хранит количество компаний в каждой стране
     function checkCountryCount() {
         var countryCount = {};
@@ -18981,7 +18977,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 function companyTotal(length) {
     /*Секция 1*/
-
     //Выводу количество компаний в первую секцию
     $('.company-total__count').text(length);
 }
@@ -19028,10 +19023,9 @@ var _chart2 = _interopRequireDefault(_chart);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function section_3_createDiagram(country) {
-    var ctx = $('#company-canvas');
-    var colors = ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 206, 86)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)', 'rgb(255, 159, 64)'];
-
-    var data = {
+    var ctx = $('#company-canvas'),
+        colors = ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 206, 86)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)', 'rgb(255, 159, 64)'],
+        data = {
         labels: getNames(),
         datasets: [{
             data: getData(),
@@ -19039,8 +19033,8 @@ function section_3_createDiagram(country) {
             borderColor: colors,
             borderWidth: 1
         }]
-    };
-    var options = {
+    },
+        options = {
         legend: {
             display: false,
             position: 'bottom',
@@ -19049,6 +19043,7 @@ function section_3_createDiagram(country) {
             }
         }
     };
+
     new _chart2.default(ctx, {
         type: 'pie',
         data: data,
@@ -19065,8 +19060,8 @@ function section_3_createDiagram(country) {
 
     //Создаю массив имен из массива объектов-стран
     function getNames() {
-        var names = [];
-        var i = 0;
+        var names = [],
+            i = 0;
         for (var key in country) {
             names[i++] = key;
         }return names;
@@ -19074,8 +19069,8 @@ function section_3_createDiagram(country) {
 
     //Создаю массив значений, сколько раз повторяется каждая страна
     function getData() {
-        var data = [];
-        var i = 0;
+        var data = [],
+            i = 0;
         for (var key in country) {
             data[i++] = country[key];
         }return data;
@@ -31728,8 +31723,9 @@ Object.defineProperty(exports, "__esModule", {
 function section_3_diagramFunction(event) {
     /*Секция 3*/
     //Список, который открывается после нажатия на легенду диаграммы
-    var name = $(this).text(); //Текст ссылки, которая указывает на страну
-    var list = $('#company-location-scrollbox');
+    var name = $(this).text(),
+        //Текст ссылки, которая указывает на страну
+    list = $('#company-location-scrollbox');
     list.append('<p>' + name + '</p>');
     for (var i = 0; i < event.data.length; i++) {
         if (event.data[i].location.name === name) {
@@ -31818,16 +31814,15 @@ function section_4_news() {
           description: "",
           img: "'
     }*/
-    var news = [];
-    var img = $('#slider-img');
-    var author = $('#slider-author');
-    var date = $('#slider-date');
-    var text = $('#slider-text');
-    var title = $("#slider-title");
-    var currentSlide = 0;
+    var news = [],
+        img = $('#slider-img'),
+        author = $('#slider-author'),
+        date = $('#slider-date'),
+        text = $('#slider-text'),
+        title = $("#slider-title"),
+        currentSlide = 0;
 
     $.ajax({
-        type: 'POST',
         url: newsURL,
         success: function success(data) {
             if (data.status === 'OK') {

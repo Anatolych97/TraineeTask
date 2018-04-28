@@ -2,17 +2,16 @@
 import Chart from "chart.js";
 
 function section_3_createDiagram(country) {
-    let ctx = $('#company-canvas');
-    let colors = [
+    let ctx = $('#company-canvas'),
+        colors = [
         'rgb(255, 99, 132)',
         'rgb(54, 162, 235)',
         'rgb(255, 206, 86)',
         'rgb(75, 192, 192)',
         'rgb(153, 102, 255)',
         'rgb(255, 159, 64)'
-    ];
-
-    let data = {
+    ],
+        data = {
         labels: getNames(),
         datasets: [{
             data: getData(),
@@ -20,8 +19,8 @@ function section_3_createDiagram(country) {
             borderColor: colors,
             borderWidth: 1
         }]
-    };
-    let options = {
+    },
+        options = {
         legend: {
             display: false,
             position: 'bottom',
@@ -30,6 +29,7 @@ function section_3_createDiagram(country) {
             },
         }
     };
+
     new Chart(ctx, {
         type: 'pie',
         data: data,
@@ -46,8 +46,8 @@ function section_3_createDiagram(country) {
 
     //Создаю массив имен из массива объектов-стран
     function getNames() {
-        let names = [];
-        let i = 0;
+        let names = [],
+            i = 0;
         for (let key in country)
             names[i++] = key;
         return names;
@@ -55,8 +55,8 @@ function section_3_createDiagram(country) {
 
     //Создаю массив значений, сколько раз повторяется каждая страна
     function getData() {
-        let data = [];
-        let i = 0;
+        let data = [],
+            i = 0;
         for (let key in country)
             data[i++] = country[key];
         return data;

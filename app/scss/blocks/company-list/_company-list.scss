@@ -7,19 +7,20 @@
   p {
     margin: 0;
     padding-left: 5%;
+
+    a {
+      display: block;
+      color: $text;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
     &:hover {
       background-color: $accent;
     }
-  }
-  p a {
-    display: block;
-    color: $text;
-    text-decoration: none;
-    cursor: pointer;
   }
 
   &_bgc {
     background-color: $list-bgc;
   }
-
 }
