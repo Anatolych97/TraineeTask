@@ -1,7 +1,7 @@
 'use strict';
 import Chart from "chart.js";
 
-function createChart(country, showList) {
+function section_3_createDiagram(country) {
     let ctx = $('#company-canvas');
     let colors = [
         'rgb(255, 99, 132)',
@@ -28,14 +28,13 @@ function createChart(country, showList) {
             labels: {
                 fontColor: 'rgb(255, 99, 132)'
             },
-        },
-        onClick: showList,
+        }
     };
-    let chart = new Chart(ctx, {
-            type: 'pie',
-            data: data,
-            options: options
-        });
+    new Chart(ctx, {
+        type: 'pie',
+        data: data,
+        options: options
+    });
 
     //Создаю легенду для диаграмммы, и на каждую ссылку привязываю действие
     (function createLegend() {
@@ -43,7 +42,6 @@ function createChart(country, showList) {
         for (let i = 0; i < names.length; i++) {
             $('#company-canvas-legend').append(`<li><a><span style="background-color: ${colors[i]};"></span>${names[i]}</a></li>`);
         }
-        $('#company-canvas-legend a').on('click', showList);
     })();
 
     //Создаю массив имен из массива объектов-стран
@@ -54,6 +52,7 @@ function createChart(country, showList) {
             names[i++] = key;
         return names;
     }
+
     //Создаю массив значений, сколько раз повторяется каждая страна
     function getData() {
         let data = [];
@@ -64,4 +63,4 @@ function createChart(country, showList) {
     }
 }
 
-export default createChart;
+export default section_3_createDiagram;

@@ -1,8 +1,19 @@
+//register html
 @import "blocks/register-form/_register-form";
+
+//company html
 @import "blocks/preloader/_preloader";
 @import "blocks/section/_section";
+@import "blocks/title-buttons/title-buttons";
+//sections on page
 @import "blocks/company-total/_company-total";
+
+//style for render overflow list
 @import "blocks/company-list/_company-list";
+
+//section with diagram and companies from common country
 @import "blocks/company-location/_company-location";
 @import "blocks/company-canvas/_company-canvas";
+
+//slider with news
 @import "blocks/news/news.scss";

@@ -1902,7 +1902,7 @@
             try {
                 oldLocale = globalLocale._abbr;
                 var aliasedRequire = require;
-                __webpack_require__(168)("./" + name);
+                __webpack_require__(170)("./" + name);
                 getSetGlobalLocale(oldLocale);
             } catch (e) {}
         }
@@ -4574,7 +4574,7 @@
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(167)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(169)(module)))
 
 /***/ }),
 /* 1 */
@@ -4584,9 +4584,9 @@
 
 
 module.exports = __webpack_require__(7);
-module.exports.easing = __webpack_require__(141);
-module.exports.canvas = __webpack_require__(142);
-module.exports.options = __webpack_require__(143);
+module.exports.easing = __webpack_require__(143);
+module.exports.canvas = __webpack_require__(144);
+module.exports.options = __webpack_require__(145);
 
 
 /***/ }),
@@ -4738,10 +4738,10 @@ module.exports = Element;
 
 
 module.exports = {};
-module.exports.Arc = __webpack_require__(149);
-module.exports.Line = __webpack_require__(150);
-module.exports.Point = __webpack_require__(151);
-module.exports.Rectangle = __webpack_require__(152);
+module.exports.Arc = __webpack_require__(151);
+module.exports.Line = __webpack_require__(152);
+module.exports.Point = __webpack_require__(153);
+module.exports.Rectangle = __webpack_require__(154);
 
 
 /***/ }),
@@ -5598,8 +5598,8 @@ helpers.getValueAtIndexOrDefault = helpers.valueAtIndexOrDefault;
 /***/ (function(module, exports, __webpack_require__) {
 
 /* MIT license */
-var convert = __webpack_require__(145);
-var string = __webpack_require__(147);
+var convert = __webpack_require__(147);
+var string = __webpack_require__(149);
 
 var Color = function (obj) {
 	if (obj instanceof Color) {
@@ -6429,8 +6429,8 @@ module.exports = {
 
 
 var helpers = __webpack_require__(1);
-var basic = __webpack_require__(153);
-var dom = __webpack_require__(154);
+var basic = __webpack_require__(155);
+var dom = __webpack_require__(156);
 
 // @TODO Make possible to select another platform at build time.
 var implementation = dom._enabled ? dom : basic;
@@ -18751,15 +18751,17 @@ var _company = __webpack_require__(137);
 
 var _company2 = _interopRequireDefault(_company);
 
-var _news = __webpack_require__(187);
+var _section_4_news = __webpack_require__(191);
 
-var _news2 = _interopRequireDefault(_news);
+var _section_4_news2 = _interopRequireDefault(_section_4_news);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _register2.default)();
+// if(document.location.href.indexOf('register-form'))
+//     register();
+// else {
 (0, _company2.default)();
-(0, _news2.default)();
+(0, _section_4_news2.default)();
 
 /***/ }),
 /* 136 */
@@ -18819,9 +18821,25 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createChart = __webpack_require__(138);
+var _section_1_companyTotal = __webpack_require__(138);
 
-var _createChart2 = _interopRequireDefault(_createChart);
+var _section_1_companyTotal2 = _interopRequireDefault(_section_1_companyTotal);
+
+var _section_2_companyList = __webpack_require__(139);
+
+var _section_2_companyList2 = _interopRequireDefault(_section_2_companyList);
+
+var _section_3_createDiagram = __webpack_require__(140);
+
+var _section_3_createDiagram2 = _interopRequireDefault(_section_3_createDiagram);
+
+var _section_3_diagramFunction = __webpack_require__(189);
+
+var _section_3_diagramFunction2 = _interopRequireDefault(_section_3_diagramFunction);
+
+var _section_5_partners = __webpack_require__(190);
+
+var _section_5_partners2 = _interopRequireDefault(_section_5_partners);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18829,7 +18847,7 @@ function company() {
 
     var companyURL = 'http://codeit.pro/codeitCandidates/serverFrontendTest/company/getList';
     var company = [];
-    var backButton = $('#button-back'); //Кнопка скрывает список стран и включает диаграмму
+
     $.ajax({
         type: 'POST',
         url: companyURL,
@@ -18848,10 +18866,16 @@ function company() {
     function CompanyShow() {
         $('.preloader-wrap').hide();
         $('.section__content').show();
-        fillCompanyTotal();
-        fillCompanyList();
-        (0, _createChart2.default)(checkCountryCount(), showCompanyFromCountry);
-        backButton.on('click', returnDiagram);
+
+        (0, _section_1_companyTotal2.default)(company.length);
+
+        (0, _section_2_companyList2.default)(company);
+        $('#company-list-scrollbox').children('p').on('click', company, _section_5_partners2.default);
+
+        (0, _section_3_createDiagram2.default)(checkCountryCount());
+        $('#company-canvas-legend a').on('click', company, _section_3_diagramFunction2.default);
+        //Кнопка скрывает список стран и включает диаграмму
+        $('#button-back').on('click', returnDiagram);
     }
 
     //Функционал кнопки, которая скрывает список стран и показывает диаграмму
@@ -18863,37 +18887,9 @@ function company() {
         $('#button-back').hide();
     }
 
-    //Список, который открывается после нажатия на легенду диаграммы
-    function showCompanyFromCountry() {
+    /*Вспомогательные функции*/
 
-        var name = $(this).text(); //Текст ссылки, которая указывает на страну
-        var list = $('#company-location-scrollbox');
-
-        list.append('<p>' + name + '</p>');
-        for (var i = 0; i < company.length; i++) {
-            if (company[i].location.name === name) {
-                list.append('<p>' + company[i].name + '</p>');
-            }
-        }
-
-        $('.company-canvas-container').hide();
-        $('#company-canvas-legend').hide();
-        $('#button-back').show();
-        list.show();
-    }
-
-    function fillCompanyTotal() {
-        $('.company-total__count').text(company.length);
-    }
-
-    function fillCompanyList() {
-        var list = $('#company-list-scrollbox');
-        for (var i = 0; i < company.length; i++) {
-            list.append('<p><a>' + company[i].name + '</a></p>');
-            if (i % 2 === 0) list.children().last().addClass('company-list_bgc');
-        }
-    }
-
+    //Создаю объект, который хранит количество компаний в каждой стране
     function checkCountryCount() {
         var countryCount = {};
         for (var key in company) {
@@ -18919,14 +18915,54 @@ exports.default = company;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+function companyTotal(length) {
+    /*Секция 1*/
 
-var _chart = __webpack_require__(139);
+    //Выводу количество компаний в первую секцию
+    $('.company-total__count').text(length);
+}
+exports.default = companyTotal;
+
+/***/ }),
+/* 139 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+function companyList(company) {
+    /*Секция 2*/
+    //Заполнение списка с названиями во второй секции
+    var list = $('#company-list-scrollbox');
+    for (var i = 0; i < company.length; i++) {
+        list.append('<p><a>' + company[i].name + '</a></p>');
+        if (i % 2 === 0) list.children().last().addClass('company-list_bgc');
+    }
+}
+
+exports.default = companyList;
+
+/***/ }),
+/* 140 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _chart = __webpack_require__(141);
 
 var _chart2 = _interopRequireDefault(_chart);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function createChart(country, showList) {
+function section_3_createDiagram(country) {
     var ctx = $('#company-canvas');
     var colors = ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 206, 86)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)', 'rgb(255, 159, 64)'];
 
@@ -18946,10 +18982,9 @@ function createChart(country, showList) {
             labels: {
                 fontColor: 'rgb(255, 99, 132)'
             }
-        },
-        onClick: showList
+        }
     };
-    var chart = new _chart2.default(ctx, {
+    new _chart2.default(ctx, {
         type: 'pie',
         data: data,
         options: options
@@ -18961,7 +18996,6 @@ function createChart(country, showList) {
         for (var i = 0; i < names.length; i++) {
             $('#company-canvas-legend').append('<li><a><span style="background-color: ' + colors[i] + ';"></span>' + names[i] + '</a></li>');
         }
-        $('#company-canvas-legend a').on('click', showList);
     })();
 
     //Создаю массив имен из массива объектов-стран
@@ -18972,6 +19006,7 @@ function createChart(country, showList) {
             names[i++] = key;
         }return names;
     }
+
     //Создаю массив значений, сколько раз повторяется каждая страна
     function getData() {
         var data = [];
@@ -18982,21 +19017,21 @@ function createChart(country, showList) {
     }
 }
 
-exports.default = createChart;
+exports.default = section_3_createDiagram;
 
 /***/ }),
-/* 139 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
  * @namespace Chart
  */
-var Chart = __webpack_require__(140)();
+var Chart = __webpack_require__(142)();
 
 Chart.helpers = __webpack_require__(1);
 
 // @todo dispatch these helpers into appropriated helpers/helpers.* file and write unit tests!
-__webpack_require__(144)(Chart);
+__webpack_require__(146)(Chart);
 
 Chart.defaults = __webpack_require__(2);
 Chart.Element = __webpack_require__(3);
@@ -19007,40 +19042,40 @@ Chart.platform = __webpack_require__(10);
 Chart.plugins = __webpack_require__(11);
 Chart.Ticks = __webpack_require__(6);
 
-__webpack_require__(155)(Chart);
-__webpack_require__(156)(Chart);
 __webpack_require__(157)(Chart);
 __webpack_require__(158)(Chart);
 __webpack_require__(159)(Chart);
 __webpack_require__(160)(Chart);
-
 __webpack_require__(161)(Chart);
 __webpack_require__(162)(Chart);
+
 __webpack_require__(163)(Chart);
 __webpack_require__(164)(Chart);
 __webpack_require__(165)(Chart);
 __webpack_require__(166)(Chart);
+__webpack_require__(167)(Chart);
+__webpack_require__(168)(Chart);
 
 // Controllers must be loaded after elements
 // See Chart.core.datasetController.dataElementType
-__webpack_require__(169)(Chart);
-__webpack_require__(170)(Chart);
 __webpack_require__(171)(Chart);
 __webpack_require__(172)(Chart);
 __webpack_require__(173)(Chart);
 __webpack_require__(174)(Chart);
 __webpack_require__(175)(Chart);
-
 __webpack_require__(176)(Chart);
 __webpack_require__(177)(Chart);
+
 __webpack_require__(178)(Chart);
 __webpack_require__(179)(Chart);
 __webpack_require__(180)(Chart);
 __webpack_require__(181)(Chart);
 __webpack_require__(182)(Chart);
+__webpack_require__(183)(Chart);
+__webpack_require__(184)(Chart);
 
 // Loading built-it plugins
-var plugins = __webpack_require__(183);
+var plugins = __webpack_require__(185);
 for (var k in plugins) {
 	if (plugins.hasOwnProperty(k)) {
 		Chart.plugins.register(plugins[k]);
@@ -19113,7 +19148,7 @@ Chart.layoutService = Chart.layouts;
 
 
 /***/ }),
-/* 140 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19169,7 +19204,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 141 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19426,7 +19461,7 @@ helpers.easingEffects = effects;
 
 
 /***/ }),
-/* 142 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19647,7 +19682,7 @@ helpers.drawRoundedRectangle = function(ctx) {
 
 
 /***/ }),
-/* 143 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19750,7 +19785,7 @@ module.exports = {
 
 
 /***/ }),
-/* 144 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20368,10 +20403,10 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 145 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var conversions = __webpack_require__(146);
+var conversions = __webpack_require__(148);
 
 var convert = function() {
    return new Converter();
@@ -20465,7 +20500,7 @@ Converter.prototype.getValues = function(space) {
 module.exports = convert;
 
 /***/ }),
-/* 146 */
+/* 148 */
 /***/ (function(module, exports) {
 
 /* MIT license */
@@ -21169,11 +21204,11 @@ for (var key in cssKeywords) {
 
 
 /***/ }),
-/* 147 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* MIT license */
-var colorNames = __webpack_require__(148);
+var colorNames = __webpack_require__(150);
 
 module.exports = {
    getRgba: getRgba,
@@ -21396,7 +21431,7 @@ for (var name in colorNames) {
 
 
 /***/ }),
-/* 148 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21555,7 +21590,7 @@ module.exports = {
 
 
 /***/ }),
-/* 149 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21669,7 +21704,7 @@ module.exports = Element.extend({
 
 
 /***/ }),
-/* 150 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21767,7 +21802,7 @@ module.exports = Element.extend({
 
 
 /***/ }),
-/* 151 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21880,7 +21915,7 @@ module.exports = Element.extend({
 
 
 /***/ }),
-/* 152 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22104,7 +22139,7 @@ module.exports = Element.extend({
 
 
 /***/ }),
-/* 153 */
+/* 155 */
 /***/ (function(module, exports) {
 
 /**
@@ -22125,7 +22160,7 @@ module.exports = {
 
 
 /***/ }),
-/* 154 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22589,7 +22624,7 @@ helpers.removeEvent = removeEventListener;
 
 
 /***/ }),
-/* 155 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22768,7 +22803,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 156 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23722,7 +23757,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 157 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24059,7 +24094,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 158 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24112,7 +24147,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 159 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25055,7 +25090,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 160 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26010,7 +26045,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 161 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26203,7 +26238,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 162 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26343,7 +26378,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 163 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26541,7 +26576,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 164 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26895,7 +26930,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 165 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27431,7 +27466,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 166 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28221,7 +28256,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 167 */
+/* 169 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -28249,7 +28284,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 168 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -28514,10 +28549,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 168;
+webpackContext.id = 170;
 
 /***/ }),
-/* 169 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29028,7 +29063,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 170 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29215,7 +29250,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 171 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29521,7 +29556,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 172 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29861,7 +29896,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 173 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30090,7 +30125,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 174 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30265,7 +30300,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 175 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30314,7 +30349,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 176 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30332,7 +30367,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 177 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30349,7 +30384,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 178 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30367,7 +30402,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 179 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30385,7 +30420,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 180 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30403,7 +30438,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 181 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30421,7 +30456,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 182 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30436,20 +30471,20 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 183 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 module.exports = {};
-module.exports.filler = __webpack_require__(184);
-module.exports.legend = __webpack_require__(185);
-module.exports.title = __webpack_require__(186);
+module.exports.filler = __webpack_require__(186);
+module.exports.legend = __webpack_require__(187);
+module.exports.title = __webpack_require__(188);
 
 
 /***/ }),
-/* 184 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30774,7 +30809,7 @@ module.exports = {
 
 
 /***/ }),
-/* 185 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31357,7 +31392,7 @@ module.exports = {
 
 
 /***/ }),
-/* 186 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31616,7 +31651,7 @@ module.exports = {
 
 
 /***/ }),
-/* 187 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31625,7 +31660,64 @@ module.exports = {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-function news() {
+function section_3_diagramFunction(event) {
+    /*Секция 3*/
+    //Список, который открывается после нажатия на легенду диаграммы
+    var name = $(this).text(); //Текст ссылки, которая указывает на страну
+    var list = $('#company-location-scrollbox');
+    list.append('<p>' + name + '</p>');
+    for (var i = 0; i < event.data.length; i++) {
+        if (event.data[i].location.name === name) {
+            list.append('<p>' + event.data[i].name + '</p>');
+        }
+    }
+
+    $('.company-canvas-container').hide();
+    $('#company-canvas-legend').hide();
+    $('#button-back').show();
+    list.show();
+}
+
+exports.default = section_3_diagramFunction;
+
+/***/ }),
+/* 190 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+function section_5_partners(event) {
+    var company = event.data,
+        partners = [];
+
+    for (var i = 0; i < company.length; i++) {
+        if (company[i].name === $(this).text()) {
+            for (var j = 0; j < company[i].partners.length; j++) {
+                partners[j] = { name: company[i].partners[j].name, value: company[i].partners[j].value };
+            }
+        }
+    }
+
+    return partners;
+}
+
+exports.default = section_5_partners;
+
+/***/ }),
+/* 191 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+function section_4_news() {
     var newsURL = 'http://codeit.pro/codeitCandidates/serverFrontendTest/news/getList';
     /* {
           author: "",
@@ -31678,6 +31770,7 @@ function news() {
         var time = date + '.' + month + '.' + year;
         return time;
     }
+
     //Show new information on slider
     function fillSlider(num) {
         img.attr('src', news[+num].img);
@@ -31692,23 +31785,25 @@ function news() {
 
     function createNav() {
         var nav = $("#slider-nav");
-        nav.append('<li><a href = "#-1" class = "news-slider__nav-item"></a></li>');
-        nav.append('<li><a href = "#0" class = "news-slider__nav-item"></a></li>');
-        nav.append('<li><a href = "#+1" class = "news-slider__nav-item"></a></li>');
+        nav.append('<li><a href = "#" class = "news-slider__nav-item" data-value="-1"></a></li>');
+        nav.append('<li><a href = "#" class = "news-slider__nav-item" data-value="0"></a></li>');
+        nav.append('<li><a href = "#" class = "news-slider__nav-item" data-value="+1"></a></li>');
     }
 
     function selectNewsItem() {
         var item = $("#slider-nav a");
         item.on('click', function (e) {
             e.preventDefault();
-            currentSlide = currentSlide + +$(this).attr('href').split('#')[1];
-            if (currentSlide >= news.length || currentSlide < 0) currentSlide = 0;
+            currentSlide = currentSlide + +$(this).data('value');
+
+            if (currentSlide >= news.length) currentSlide = news.length - 1;else if (currentSlide <= 0) currentSlide = 0;
+
             fillSlider(currentSlide);
         });
     }
 }
 
-exports.default = news;
+exports.default = section_4_news;
 
 /***/ })
 /******/ ]);

@@ -1,11 +1,15 @@
 'use strict';
-import createChart from './createChart.js';
+import companyTotal from './section_1_companyTotal.js';
+import companyList from './section_2_companyList.js';
+import createDiagram from './section_3_createDiagram.js';
+import diagramFunc from './section_3_diagramFunction.js';
+import partners from './section_5_partners.js';
 
 function company() {
 
     let companyURL = 'http://codeit.pro/codeitCandidates/serverFrontendTest/company/getList';
     let company = [];
-    let backButton = $('#button-back'); //Кнопка скрывает список стран и включает диаграмму
+
     $.ajax({
         type: 'POST',
         url: companyURL,
@@ -26,10 +30,16 @@ function company() {
     function CompanyShow() {
         $('.preloader-wrap').hide();
         $('.section__content').show();
-        fillCompanyTotal();
-        fillCompanyList();
-        createChart(checkCountryCount(), showCompanyFromCountry);
-        backButton.on('click', returnDiagram);
+
+        companyTotal(company.length);
+
+        companyList(company);
+        $('#company-list-scrollbox').children('p').on('click', company, partners);
+
+        createDiagram(checkCountryCount());
+        $('#company-canvas-legend a').on('click', company, diagramFunc);
+        //Кнопка скрывает список стран и включает диаграмму
+        $('#button-back').on('click', returnDiagram);
     }
 
     //Функционал кнопки, которая скрывает список стран и показывает диаграмму
@@ -41,38 +51,9 @@ function company() {
         $('#button-back').hide();
     }
 
-    //Список, который открывается после нажатия на легенду диаграммы
-    function showCompanyFromCountry() {
+    /*Вспомогательные функции*/
 
-        let name = $(this).text(); //Текст ссылки, которая указывает на страну
-        let list = $('#company-location-scrollbox');
-
-        list.append(`<p>${name}</p>`);
-        for (let i = 0; i < company.length; i++) {
-            if (company[i].location.name === name) {
-                list.append('<p>' + company[i].name + '</p>');
-            }
-        }
-
-        $('.company-canvas-container').hide();
-        $('#company-canvas-legend').hide();
-        $('#button-back').show();
-        list.show();
-    }
-
-    function fillCompanyTotal() {
-        $('.company-total__count').text(company.length);
-    }
-
-    function fillCompanyList() {
-        let list = $('#company-list-scrollbox');
-        for (let i = 0; i < company.length; i++) {
-            list.append('<p><a>' + (company[i].name) + '</a></p>');
-            if (i % 2 === 0)
-                list.children().last().addClass('company-list_bgc');
-        }
-    }
-
+    //Создаю объект, который хранит количество компаний в каждой стране
     function checkCountryCount() {
         let countryCount = {};
         for (let key in company) {

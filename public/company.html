@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <title>Company news</title>
+    <title>Company section_4_news</title>
     <meta charset='utf-8'>
     <meta name='description' content='CodeIT'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -12,8 +12,7 @@
 <body>
 <main class='container'>
     <div class='row justify-content-sm-center d-flex align-content-center'>
-
-        <div class='col-lg'>
+        <div class='col-md'>
             <h3 class='title-style text-center'>Total Companies</h3>
             <div class='section company-total '>
                 <div class='preloader-wrap'>
@@ -23,7 +22,7 @@
             </div>
         </div>
 
-        <div class='col-lg'>
+        <div class='col-md'>
             <h3 class='title-style text-center'>List of Companies</h3>
             <div class='section company-list'>
                 <div class='preloader-wrap'>
@@ -34,22 +33,43 @@
         </div>
     </div><!-- row -->
 
+    <div class="row">
+        <div class="col-md">
+            <h3 class="title-style text-center">Партнеры фирмы
+                <div id = 'company-partners__filters' class="company-partners__filters title-buttons">
+                    Sort by
+                    <a href="#" data-value="1"> Name
+                        <span class="fas fa-arrow-down "></span>
+                    </a>
+                    <a href="#" data-value="0"> Value
+                        <span class="fas fa-arrow-up"></span>
+                    </a>
+                </div>
+            </h3>
+            <div class="section company-partners">
+                <ul id="company-partners__list"></ul>
+            </div>
+        </div>
+    </div>
+
+
     <div class='row justify-content-sm-center'>
-        <div class='col-lg'>
-            <h3 class='title-style text-center'>Companies by Location <a href="#" id="button-back" style = "display: none"><span class="fas fa-arrow-left"></span></a></h3>
+        <div class='col-md'>
+            <h3 class='title-style text-center'>Companies by Location <a href="#" id="button-back" class="title-buttons" style="display: none">
+                <span class="fas fa-arrow-left"></span></a></h3>
             <div class='section company-location'>
                 <div class='preloader-wrap'>
                     <div class='preloader'></div>
                 </div>
                 <div class="company-canvas-container">
-                        <canvas id='company-canvas'></canvas>
-                        <ul id = "company-canvas-legend" class="company-canvas-legend"></ul>
-                    </div>
+                    <canvas id='company-canvas'></canvas>
+                    <ul id="company-canvas-legend" class="company-canvas-legend"></ul>
+                </div>
                 <div id='company-location-scrollbox' class='company-list company-list__scrollbox'></div>
             </div>
         </div>
 
-        <div class='col-lg'>
+        <div class='col-md'>
             <h3 class='title-style text-center'>News</h3>
             <div class='section news'>
                 <div class='preloader-wrap'>

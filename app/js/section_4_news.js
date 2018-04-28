@@ -1,6 +1,6 @@
 'use strict';
 
-function news() {
+function section_4_news() {
     let newsURL = 'http://codeit.pro/codeitCandidates/serverFrontendTest/news/getList';
     /* {
           author: "",
@@ -42,7 +42,7 @@ function news() {
     }
 
     //Convert Unixtime to date-time string
-    function timeConverter(UNIX_timestamp){
+    function timeConverter(UNIX_timestamp) {
         let a = new Date(UNIX_timestamp * 1000);
         //let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
         let year = a.getFullYear();
@@ -55,6 +55,7 @@ function news() {
         let time = date + '.' + month + '.' + year;
         return time;
     }
+
     //Show new information on slider
     function fillSlider(num) {
         img.attr('src', news[+num].img);
@@ -63,8 +64,8 @@ function news() {
         author.text(news[+num].author);
         date.text(timeConverter(news[+num].date));
         text.text(function () {
-            if(news[+num].description.length > 200)
-                return news[+num].description.slice(0,200) + "...";
+            if (news[+num].description.length > 200)
+                return news[+num].description.slice(0, 200) + "...";
             else
                 return news[+num].description;
         });
@@ -72,21 +73,25 @@ function news() {
 
     function createNav() {
         let nav = $("#slider-nav");
-            nav.append(`<li><a href = "#-1" class = "news-slider__nav-item"></a></li>`);
-            nav.append(`<li><a href = "#0" class = "news-slider__nav-item"></a></li>`);
-            nav.append(`<li><a href = "#+1" class = "news-slider__nav-item"></a></li>`);
+        nav.append(`<li><a href = "#" class = "news-slider__nav-item" data-value="-1"></a></li>`);
+        nav.append(`<li><a href = "#" class = "news-slider__nav-item" data-value="0"></a></li>`);
+        nav.append(`<li><a href = "#" class = "news-slider__nav-item" data-value="+1"></a></li>`);
     }
 
     function selectNewsItem() {
         let item = $("#slider-nav a");
         item.on('click', function (e) {
             e.preventDefault();
-            currentSlide = currentSlide + +$(this).attr('href').split('#')[1];
-            if(currentSlide >= news.length || currentSlide < 0)
+            currentSlide = currentSlide + +$(this).data('value');
+
+            if (currentSlide >= news.length)
+                currentSlide = news.length - 1;
+            else if (currentSlide <= 0)
                 currentSlide = 0;
+
             fillSlider(currentSlide);
         });
     }
 }
 
-export default news;
+export default section_4_news;
