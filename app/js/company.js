@@ -3,8 +3,8 @@ import companyTotal from './section_1_companyTotal.js';
 import companyList from './section_2_companyList.js';
 import createDiagram from './section_3_createDiagram.js';
 import diagramFunc from './section_3_diagramFunction.js';
-import partners from './section_5_partners.js';
-import sortType from './section_5_sortFunction';
+import sortType from './section_5_sortButtons.js';
+import {part} from './section_5_partners.js';
 
 function company() {
 
@@ -35,14 +35,13 @@ function company() {
         companyTotal(company.length);
 
         companyList(company);
-        $('#company-list-scrollbox').children('p').on('click', company, partners);
+        $('#company-list-scrollbox').children('p').on('click', company, part);
 
         createDiagram(checkCountryCount());
         $('#company-canvas-legend a').on('click', company, diagramFunc);
         //Кнопка скрывает список стран и включает диаграмму
         $('#button-back').on('click', returnDiagram);
-
-        $('#company-partners__filters a').on('click', sortType);
+        sortType();
     }
 
     //Функционал кнопки, которая скрывает список стран и показывает диаграмму

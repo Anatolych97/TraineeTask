@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 135);
+/******/ 	return __webpack_require__(__webpack_require__.s = 136);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1902,7 +1902,7 @@
             try {
                 oldLocale = globalLocale._abbr;
                 var aliasedRequire = require;
-                __webpack_require__(170)("./" + name);
+                __webpack_require__(171)("./" + name);
                 getSetGlobalLocale(oldLocale);
             } catch (e) {}
         }
@@ -4574,7 +4574,7 @@
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(169)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(170)(module)))
 
 /***/ }),
 /* 1 */
@@ -4584,9 +4584,9 @@
 
 
 module.exports = __webpack_require__(7);
-module.exports.easing = __webpack_require__(143);
-module.exports.canvas = __webpack_require__(144);
-module.exports.options = __webpack_require__(145);
+module.exports.easing = __webpack_require__(144);
+module.exports.canvas = __webpack_require__(145);
+module.exports.options = __webpack_require__(146);
 
 
 /***/ }),
@@ -4738,10 +4738,10 @@ module.exports = Element;
 
 
 module.exports = {};
-module.exports.Arc = __webpack_require__(151);
-module.exports.Line = __webpack_require__(152);
-module.exports.Point = __webpack_require__(153);
-module.exports.Rectangle = __webpack_require__(154);
+module.exports.Arc = __webpack_require__(152);
+module.exports.Line = __webpack_require__(153);
+module.exports.Point = __webpack_require__(154);
+module.exports.Rectangle = __webpack_require__(155);
 
 
 /***/ }),
@@ -5598,8 +5598,8 @@ helpers.getValueAtIndexOrDefault = helpers.valueAtIndexOrDefault;
 /***/ (function(module, exports, __webpack_require__) {
 
 /* MIT license */
-var convert = __webpack_require__(147);
-var string = __webpack_require__(149);
+var convert = __webpack_require__(148);
+var string = __webpack_require__(150);
 
 var Color = function (obj) {
 	if (obj instanceof Color) {
@@ -6429,8 +6429,8 @@ module.exports = {
 
 
 var helpers = __webpack_require__(1);
-var basic = __webpack_require__(155);
-var dom = __webpack_require__(156);
+var basic = __webpack_require__(156);
+var dom = __webpack_require__(157);
 
 // @TODO Make possible to select another platform at build time.
 var implementation = dom._enabled ? dom : basic;
@@ -18743,11 +18743,72 @@ module.exports = {
 "use strict";
 
 
-var _register = __webpack_require__(136);
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var partners = [];
+
+function section_5_partners(event) {
+    event.preventDefault();
+    var company = event.data;
+    $('#partners-row').show();
+    for (var i = 0; i < company.length; i++) {
+        if (company[i].name === $(this).text()) {
+            for (var j = 0; j < company[i].partners.length; j++) {
+                partners[j] = { name: company[i].partners[j].name, value: company[i].partners[j].value };
+            }
+        }
+    }
+    render();
+}
+
+function render() {
+    $('#company-partners__list').empty();
+    var sortName = $('#sortName'),
+        sortValue = $('#sortValue');
+
+    if (sortName.attr('data-active') === '1') {
+        if (sortName.attr('data-sort') === '1') {
+            partners.sort(function (a, b) {
+                return a.name > b.name;
+            });
+        } else {
+            partners.sort(function (a, b) {
+                return a.name < b.name;
+            });
+        }
+    }
+    if (sortValue.attr('data-active') === '1') {
+        if (sortValue.attr('data-sort') === '0') {
+            partners.sort(function (a, b) {
+                return a.value - b.value;
+            });
+        } else {
+            partners.sort(function (a, b) {
+                return b.value - a.value;
+            });
+        }
+    }
+    for (var item in partners) {
+        $('#company-partners__list').append('<p>' + partners[item].name + '  ' + partners[item].value + '</p>');
+    }
+}
+
+exports.part = section_5_partners;
+exports.list = render;
+
+/***/ }),
+/* 136 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _register = __webpack_require__(137);
 
 var _register2 = _interopRequireDefault(_register);
 
-var _company = __webpack_require__(137);
+var _company = __webpack_require__(138);
 
 var _company2 = _interopRequireDefault(_company);
 
@@ -18764,7 +18825,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 (0, _section_4_news2.default)();
 
 /***/ }),
-/* 136 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18811,7 +18872,7 @@ function register() {
 exports.default = register;
 
 /***/ }),
-/* 137 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18821,29 +18882,27 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _section_1_companyTotal = __webpack_require__(138);
+var _section_1_companyTotal = __webpack_require__(139);
 
 var _section_1_companyTotal2 = _interopRequireDefault(_section_1_companyTotal);
 
-var _section_2_companyList = __webpack_require__(139);
+var _section_2_companyList = __webpack_require__(140);
 
 var _section_2_companyList2 = _interopRequireDefault(_section_2_companyList);
 
-var _section_3_createDiagram = __webpack_require__(140);
+var _section_3_createDiagram = __webpack_require__(141);
 
 var _section_3_createDiagram2 = _interopRequireDefault(_section_3_createDiagram);
 
-var _section_3_diagramFunction = __webpack_require__(189);
+var _section_3_diagramFunction = __webpack_require__(190);
 
 var _section_3_diagramFunction2 = _interopRequireDefault(_section_3_diagramFunction);
 
-var _section_5_partners = __webpack_require__(190);
+var _section_5_sortButtons = __webpack_require__(191);
 
-var _section_5_partners2 = _interopRequireDefault(_section_5_partners);
+var _section_5_sortButtons2 = _interopRequireDefault(_section_5_sortButtons);
 
-var _section_5_sortFunction = __webpack_require__(191);
-
-var _section_5_sortFunction2 = _interopRequireDefault(_section_5_sortFunction);
+var _section_5_partners = __webpack_require__(135);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18874,14 +18933,13 @@ function company() {
         (0, _section_1_companyTotal2.default)(company.length);
 
         (0, _section_2_companyList2.default)(company);
-        $('#company-list-scrollbox').children('p').on('click', company, _section_5_partners2.default);
+        $('#company-list-scrollbox').children('p').on('click', company, _section_5_partners.part);
 
         (0, _section_3_createDiagram2.default)(checkCountryCount());
         $('#company-canvas-legend a').on('click', company, _section_3_diagramFunction2.default);
         //Кнопка скрывает список стран и включает диаграмму
         $('#button-back').on('click', returnDiagram);
-
-        $('#company-partners__filters a').on('click', _section_5_sortFunction2.default);
+        (0, _section_5_sortButtons2.default)();
     }
 
     //Функционал кнопки, которая скрывает список стран и показывает диаграмму
@@ -18912,7 +18970,7 @@ function company() {
 exports.default = company;
 
 /***/ }),
-/* 138 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18930,7 +18988,7 @@ function companyTotal(length) {
 exports.default = companyTotal;
 
 /***/ }),
-/* 139 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18952,7 +19010,7 @@ function companyList(company) {
 exports.default = companyList;
 
 /***/ }),
-/* 140 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18962,7 +19020,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _chart = __webpack_require__(141);
+var _chart = __webpack_require__(142);
 
 var _chart2 = _interopRequireDefault(_chart);
 
@@ -19026,18 +19084,18 @@ function section_3_createDiagram(country) {
 exports.default = section_3_createDiagram;
 
 /***/ }),
-/* 141 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
  * @namespace Chart
  */
-var Chart = __webpack_require__(142)();
+var Chart = __webpack_require__(143)();
 
 Chart.helpers = __webpack_require__(1);
 
 // @todo dispatch these helpers into appropriated helpers/helpers.* file and write unit tests!
-__webpack_require__(146)(Chart);
+__webpack_require__(147)(Chart);
 
 Chart.defaults = __webpack_require__(2);
 Chart.Element = __webpack_require__(3);
@@ -19048,40 +19106,40 @@ Chart.platform = __webpack_require__(10);
 Chart.plugins = __webpack_require__(11);
 Chart.Ticks = __webpack_require__(6);
 
-__webpack_require__(157)(Chart);
 __webpack_require__(158)(Chart);
 __webpack_require__(159)(Chart);
 __webpack_require__(160)(Chart);
 __webpack_require__(161)(Chart);
 __webpack_require__(162)(Chart);
-
 __webpack_require__(163)(Chart);
+
 __webpack_require__(164)(Chart);
 __webpack_require__(165)(Chart);
 __webpack_require__(166)(Chart);
 __webpack_require__(167)(Chart);
 __webpack_require__(168)(Chart);
+__webpack_require__(169)(Chart);
 
 // Controllers must be loaded after elements
 // See Chart.core.datasetController.dataElementType
-__webpack_require__(171)(Chart);
 __webpack_require__(172)(Chart);
 __webpack_require__(173)(Chart);
 __webpack_require__(174)(Chart);
 __webpack_require__(175)(Chart);
 __webpack_require__(176)(Chart);
 __webpack_require__(177)(Chart);
-
 __webpack_require__(178)(Chart);
+
 __webpack_require__(179)(Chart);
 __webpack_require__(180)(Chart);
 __webpack_require__(181)(Chart);
 __webpack_require__(182)(Chart);
 __webpack_require__(183)(Chart);
 __webpack_require__(184)(Chart);
+__webpack_require__(185)(Chart);
 
 // Loading built-it plugins
-var plugins = __webpack_require__(185);
+var plugins = __webpack_require__(186);
 for (var k in plugins) {
 	if (plugins.hasOwnProperty(k)) {
 		Chart.plugins.register(plugins[k]);
@@ -19154,7 +19212,7 @@ Chart.layoutService = Chart.layouts;
 
 
 /***/ }),
-/* 142 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19210,7 +19268,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 143 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19467,7 +19525,7 @@ helpers.easingEffects = effects;
 
 
 /***/ }),
-/* 144 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19688,7 +19746,7 @@ helpers.drawRoundedRectangle = function(ctx) {
 
 
 /***/ }),
-/* 145 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19791,7 +19849,7 @@ module.exports = {
 
 
 /***/ }),
-/* 146 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20409,10 +20467,10 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 147 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var conversions = __webpack_require__(148);
+var conversions = __webpack_require__(149);
 
 var convert = function() {
    return new Converter();
@@ -20506,7 +20564,7 @@ Converter.prototype.getValues = function(space) {
 module.exports = convert;
 
 /***/ }),
-/* 148 */
+/* 149 */
 /***/ (function(module, exports) {
 
 /* MIT license */
@@ -21210,11 +21268,11 @@ for (var key in cssKeywords) {
 
 
 /***/ }),
-/* 149 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* MIT license */
-var colorNames = __webpack_require__(150);
+var colorNames = __webpack_require__(151);
 
 module.exports = {
    getRgba: getRgba,
@@ -21437,7 +21495,7 @@ for (var name in colorNames) {
 
 
 /***/ }),
-/* 150 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21596,7 +21654,7 @@ module.exports = {
 
 
 /***/ }),
-/* 151 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21710,7 +21768,7 @@ module.exports = Element.extend({
 
 
 /***/ }),
-/* 152 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21808,7 +21866,7 @@ module.exports = Element.extend({
 
 
 /***/ }),
-/* 153 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21921,7 +21979,7 @@ module.exports = Element.extend({
 
 
 /***/ }),
-/* 154 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22145,7 +22203,7 @@ module.exports = Element.extend({
 
 
 /***/ }),
-/* 155 */
+/* 156 */
 /***/ (function(module, exports) {
 
 /**
@@ -22166,7 +22224,7 @@ module.exports = {
 
 
 /***/ }),
-/* 156 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22630,7 +22688,7 @@ helpers.removeEvent = removeEventListener;
 
 
 /***/ }),
-/* 157 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22809,7 +22867,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 158 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23763,7 +23821,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 159 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24100,7 +24158,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 160 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24153,7 +24211,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 161 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25096,7 +25154,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 162 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26051,7 +26109,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 163 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26244,7 +26302,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 164 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26384,7 +26442,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 165 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26582,7 +26640,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 166 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26936,7 +26994,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 167 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27472,7 +27530,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 168 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28262,7 +28320,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 169 */
+/* 170 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -28290,7 +28348,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 170 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -28555,10 +28613,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 170;
+webpackContext.id = 171;
 
 /***/ }),
-/* 171 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29069,7 +29127,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 172 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29256,7 +29314,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 173 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29562,7 +29620,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 174 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29902,7 +29960,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 175 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30131,7 +30189,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 176 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30306,7 +30364,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 177 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30355,7 +30413,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 178 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30373,7 +30431,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 179 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30390,7 +30448,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 180 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30408,7 +30466,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 181 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30426,7 +30484,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 182 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30444,7 +30502,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 183 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30462,7 +30520,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 184 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30477,20 +30535,20 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 185 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 module.exports = {};
-module.exports.filler = __webpack_require__(186);
-module.exports.legend = __webpack_require__(187);
-module.exports.title = __webpack_require__(188);
+module.exports.filler = __webpack_require__(187);
+module.exports.legend = __webpack_require__(188);
+module.exports.title = __webpack_require__(189);
 
 
 /***/ }),
-/* 186 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30815,7 +30873,7 @@ module.exports = {
 
 
 /***/ }),
-/* 187 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31398,7 +31456,7 @@ module.exports = {
 
 
 /***/ }),
-/* 188 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31657,7 +31715,7 @@ module.exports = {
 
 
 /***/ }),
-/* 189 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31687,36 +31745,6 @@ function section_3_diagramFunction(event) {
 exports.default = section_3_diagramFunction;
 
 /***/ }),
-/* 190 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-function section_5_partners(event) {
-    var company = event.data,
-        partners = [];
-
-    $('#company-partners__list').empty();
-    for (var i = 0; i < company.length; i++) {
-        if (company[i].name === $(this).text()) {
-            for (var j = 0; j < company[i].partners.length; j++) {
-                partners[j] = { name: company[i].partners[j].name, value: company[i].partners[j].value };
-                render(partners[j]);
-            }
-        }
-    }
-
-    function render(item) {
-        $('#company-partners__list').append('<p>' + item.name + '  ' + item.value + '</p>');
-    }
-}
-exports.default = section_5_partners;
-
-/***/ }),
 /* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -31726,26 +31754,48 @@ exports.default = section_5_partners;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-function section_5_sortFunction() {
 
-    if ($(this).text().indexOf('Name')) {
+var _section_5_partners = __webpack_require__(135);
+
+function section_5_sortType() {
+
+    var sortName = $('#sortName'),
+        sortValue = $('#sortValue');
+    sortName.on('click', sortByName);
+    sortValue.on('click', sortByValue);
+
+    function sortByName(e) {
+        e.preventDefault();
+        sortName.attr('data-active', '1');
+
         if ($(this).attr('data-sort') === '1') {
             $(this).children('span').removeClass('fa-arrow-down').addClass('fa-arrow-up');
             $(this).attr('data-sort', 0);
+            sortValue.attr('data-active', '0');
         } else {
             $(this).children('span').removeClass('fa-arrow-up').addClass('fa-arrow-down');
             $(this).attr('data-sort', 1);
+            sortValue.attr('data-active', '0');
         }
-    } else {
+        (0, _section_5_partners.list)();
+    }
+    function sortByValue(e) {
+        e.preventDefault();
+        sortValue.attr('data-active', '1');
         if ($(this).attr('data-sort') === '0') {
-            $(this).children('span').removeClass('fa-arrow-up').addClass('fa-arrow-up');
+            $(this).children('span').removeClass('fa-arrow-up').addClass('fa-arrow-down');
+            $(this).attr('data-sort', 1);
+            sortName.attr('data-active', '0');
         } else {
-            $(this).children('span').removeClass('fa-arrow-down').addClass('fa-arrow-down');
+            $(this).children('span').removeClass('fa-arrow-down').addClass('fa-arrow-up');
+            $(this).attr('data-sort', 0);
+            sortName.attr('data-active', '0');
         }
+        (0, _section_5_partners.list)();
     }
 }
 
-exports.default = section_5_sortFunction;
+exports.default = section_5_sortType;
 
 /***/ }),
 /* 192 */
