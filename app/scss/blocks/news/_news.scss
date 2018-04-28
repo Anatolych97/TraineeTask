@@ -1,0 +1,124 @@
+.news {
+  position: relative;
+
+  @media(max-width: 768px) {
+      height: 500px;
+    margin-bottom: 20px;
+  }
+}
+.news-slider {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items: start;
+  width: 100%;
+  height: 90%;
+  padding: 10px;
+
+  //img-side
+  &__top-zone {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+  &__img-wrap {
+    height: 200px;
+    min-width: 50%;
+    max-width: 50%;
+    overflow: hidden;
+  }
+  &__img {
+    align-self: center;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    background-color: $gray-700;
+    object-fit: contain;
+  }
+
+  //text-side
+  &__desc {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: left;
+    align-items: center;
+  }
+  &__title {
+    margin-bottom: 10px;
+
+    a {
+      color: $text;
+      text-decoration: none;
+    }
+  }
+  &__text {
+    margin: 0 10px;
+    text-align: justify;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  //info
+  &__info {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    justify-content: start;
+    margin-left: 20px;
+  }
+  &__author {
+    &:before {
+      font-weight: bold;
+      content: "Author: ";
+    }
+  }
+  &__date {
+    &:before {
+      font-weight: bold;
+      content: "Public: ";
+    }
+  }
+
+  //nav
+  &__nav {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    list-style: none;
+    padding: 5px 10px;
+  }
+  &__nav-item {
+    display: block;
+    height: 20px;
+    width: 20px;
+    margin: 0 10px;
+    border-radius: 50%;
+    background-color: rgba($gray-300, .3);
+    box-shadow: #6c757d 1px 1px 1px 1px;
+    cursor: pointer;
+    transition: background-color .3s ease;
+    &:after {
+      content: "  ";
+    }
+    &:hover {
+      background-color: rgba($accent, .3);
+    }
+  }
+
+  @media(max-width: 768px) {
+
+    &__top-zone {
+      flex-flow: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__img-wrap {
+      max-width: 100%;
+    }
+
+    &__text {
+      overflow: scroll;
+    }
+  }
+
+}

@@ -4,6 +4,7 @@ import companyList from './section_2_companyList.js';
 import createDiagram from './section_3_createDiagram.js';
 import diagramFunc from './section_3_diagramFunction.js';
 import partners from './section_5_partners.js';
+import sortType from './section_5_sortFunction';
 
 function company() {
 
@@ -40,6 +41,8 @@ function company() {
         $('#company-canvas-legend a').on('click', company, diagramFunc);
         //Кнопка скрывает список стран и включает диаграмму
         $('#button-back').on('click', returnDiagram);
+
+        $('#company-partners__filters a').on('click', sortType);
     }
 
     //Функционал кнопки, которая скрывает список стран и показывает диаграмму

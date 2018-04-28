@@ -18751,7 +18751,7 @@ var _company = __webpack_require__(137);
 
 var _company2 = _interopRequireDefault(_company);
 
-var _section_4_news = __webpack_require__(191);
+var _section_4_news = __webpack_require__(192);
 
 var _section_4_news2 = _interopRequireDefault(_section_4_news);
 
@@ -18841,6 +18841,10 @@ var _section_5_partners = __webpack_require__(190);
 
 var _section_5_partners2 = _interopRequireDefault(_section_5_partners);
 
+var _section_5_sortFunction = __webpack_require__(191);
+
+var _section_5_sortFunction2 = _interopRequireDefault(_section_5_sortFunction);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function company() {
@@ -18876,6 +18880,8 @@ function company() {
         $('#company-canvas-legend a').on('click', company, _section_3_diagramFunction2.default);
         //Кнопка скрывает список стран и включает диаграмму
         $('#button-back').on('click', returnDiagram);
+
+        $('#company-partners__filters a').on('click', _section_5_sortFunction2.default);
     }
 
     //Функционал кнопки, которая скрывает список стран и показывает диаграмму
@@ -31694,21 +31700,55 @@ function section_5_partners(event) {
     var company = event.data,
         partners = [];
 
+    $('#company-partners__list').empty();
     for (var i = 0; i < company.length; i++) {
         if (company[i].name === $(this).text()) {
             for (var j = 0; j < company[i].partners.length; j++) {
                 partners[j] = { name: company[i].partners[j].name, value: company[i].partners[j].value };
+                render(partners[j]);
             }
         }
     }
 
-    return partners;
+    function render(item) {
+        $('#company-partners__list').append('<p>' + item.name + '  ' + item.value + '</p>');
+    }
 }
-
 exports.default = section_5_partners;
 
 /***/ }),
 /* 191 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+function section_5_sortFunction() {
+
+    if ($(this).text().indexOf('Name')) {
+        if ($(this).attr('data-sort') === '1') {
+            $(this).children('span').removeClass('fa-arrow-down').addClass('fa-arrow-up');
+            $(this).attr('data-sort', 0);
+        } else {
+            $(this).children('span').removeClass('fa-arrow-up').addClass('fa-arrow-down');
+            $(this).attr('data-sort', 1);
+        }
+    } else {
+        if ($(this).attr('data-sort') === '0') {
+            $(this).children('span').removeClass('fa-arrow-up').addClass('fa-arrow-up');
+        } else {
+            $(this).children('span').removeClass('fa-arrow-down').addClass('fa-arrow-down');
+        }
+    }
+}
+
+exports.default = section_5_sortFunction;
+
+/***/ }),
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

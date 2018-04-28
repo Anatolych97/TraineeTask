@@ -1,0 +1,52 @@
+.title-style {
+  font-weight: bold;
+  margin-top: 5%;
+  margin-bottom: 0;
+  color: white;
+  background-color: $title-bgc;
+}
+.list-style-reset {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.black-style {
+  color: #797e83;
+  background-color: #3b4148;
+}
+.item-height {
+  height: 50px;
+  line-height: 50px;
+}
+
+
+::placeholder {
+  color: #666;
+}
+::selection {
+  background-color: $accent;
+  color: #fff;
+}
+
+input, textarea {
+  border: #666 1px solid;
+  outline: none;
+  &:focus:required:invalid {
+    border-color: red;
+  }
+  &:required:valid {
+    border-color: green;
+  }
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.text-center {
+  text-align: center;
+}
+b, strong {
+  font-weight: bold;
+}
