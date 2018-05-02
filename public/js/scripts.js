@@ -18791,7 +18791,7 @@ function render() {
         }
     }
     for (var item in partners) {
-        $('#company-partners__list').append('<p class = \'company-partners__item\'>' + ('<span class = \'company-partners__item-name\'>' + partners[item].name + '</span>') + ('<span class = \'company-partners__item-value\'>' + partners[item].value + '%</span>') + '</p>');
+        $('#company-partners__list').append('<li class = \'company-partners__item\'>' + ('<span class = \'company-partners__item-name\'>' + partners[item].name + '</span>') + ('<span class = \'company-partners__item-value\'>' + partners[item].value + '%</span>') + '</li>');
     }
 }
 
@@ -18932,7 +18932,7 @@ function company() {
 
         (0, _section_2_companyList2.default)(company);
         //Привязывю отображение партнеров по нажатию на элемент списка
-        $('#company-list-scrollbox').children('p').on('click', company, _section_5_partners.part);
+        $('#company-list-scrollbox').children('li').on('click', company, _section_5_partners.part);
 
         (0, _section_3_createDiagram2.default)(checkCountryCount());
         $('#company-canvas-legend a').on('click', company, _section_3_diagramFunction2.default);
@@ -18998,7 +18998,7 @@ function companyList(company) {
     //Заполнение списка с названиями во второй секции
     var list = $('#company-list-scrollbox');
     for (var i = 0; i < company.length; i++) {
-        list.append('<p><a>' + company[i].name + '</a></p>');
+        list.append('<li><a>' + company[i].name + '</a></li>');
         if (i % 2 === 0) list.children().last().addClass('company-list_bgc');
     }
 }
@@ -31726,10 +31726,10 @@ function section_3_diagramFunction(event) {
     var name = $(this).text(),
         //Текст ссылки, которая указывает на страну
     list = $('#company-location-scrollbox');
-    list.append('<p>' + name + '</p>');
+    list.append('<li>' + name + '</li>');
     for (var i = 0; i < event.data.length; i++) {
         if (event.data[i].location.name === name) {
-            list.append('<p>' + event.data[i].name + '</p>');
+            list.append('<li>' + event.data[i].name + '</li>');
         }
     }
 

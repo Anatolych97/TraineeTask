@@ -46,10 +46,10 @@ function render() {
         }
     }
     for (let item in partners)
-        $('#company-partners__list').append(`<p class = 'company-partners__item'>` +
+        $('#company-partners__list').append(`<li class = 'company-partners__item'>` +
                                                 `<span class = 'company-partners__item-name'>${partners[item].name}</span>` +
                                                 `<span class = 'company-partners__item-value'>${partners[item].value}%</span>`+
-                                            `</p>`);
+                                            `</li>`);
 }
 
 

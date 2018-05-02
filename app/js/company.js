@@ -35,7 +35,7 @@ function company() {
 
         companyList(company);
         //Привязывю отображение партнеров по нажатию на элемент списка
-        $('#company-list-scrollbox').children('p').on('click', company, part);
+        $('#company-list-scrollbox').children('li').on('click', company, part);
 
         createDiagram(checkCountryCount());
         $('#company-canvas-legend a').on('click', company, diagramFunc);

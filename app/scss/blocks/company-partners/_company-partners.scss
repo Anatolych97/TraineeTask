@@ -26,6 +26,7 @@
     overflow: scroll;
     overflow-y: hidden;
     white-space: nowrap;
+    @extend .list-style-reset
   }
   &__item {
     display: flex;

@@ -3,8 +3,9 @@
     height: 100%;
     overflow: scroll;
     overflow-x: hidden;
+    @extend .list-style-reset
   }
-  p {
+  li {
     margin: 0;
     padding-left: 5%;
 
