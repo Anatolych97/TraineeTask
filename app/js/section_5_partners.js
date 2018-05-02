@@ -3,15 +3,12 @@ let partners = [];
 
 function section_5_partners(event) {
     event.preventDefault();
-    let company = event.data;
+    let company = event.data,
+        companyID = $(this).attr('data-id');
     setTimeout(200);
     $('#partners-row').show();
-    for (let i = 0; i < company.length; i++) {
-        if (company[i].name === $(this).text()) {
-            for (let j = 0; j < company[i].partners.length; j++) {
-                partners[j] = {name: company[i].partners[j].name, value: company[i].partners[j].value};
-            }
-        }
+    for (let j = 0; j < company[companyID].partners.length; j++) {
+        partners[j] = {name: company[companyID].partners[j].name, value: company[companyID].partners[j].value};
     }
     render();
 }
@@ -47,10 +44,10 @@ function render() {
     }
     for (let item in partners)
         $('#company-partners__list').append(`<li class = 'company-partners__item'>` +
-                                                `<span class = 'company-partners__item-name'>${partners[item].name}</span>` +
-                                                `<span class = 'company-partners__item-value'>${partners[item].value}%</span>`+
-                                            `</li>`);
+            `<span class = 'company-partners__item-name'>${partners[item].name}</span>` +
+            `<span class = 'company-partners__item-value'>${partners[item].value}%</span>` +
+            `</li>`);
 }
 
 
-export {section_5_partners as part, render as list};
+export {section_5_partners as partnersList, render as list};

@@ -4,7 +4,7 @@ import companyList from './section_2_companyList.js';
 import createDiagram from './section_3_createDiagram.js';
 import diagramFunc from './section_3_diagramFunction.js';
 import sortType from './section_5_sortButtons.js';
-import {part} from './section_5_partners.js';
+import {partnersList} from './section_5_partners.js';
 
 function company() {
 
@@ -35,7 +35,7 @@ function company() {
 
         companyList(company);
         //Привязывю отображение партнеров по нажатию на элемент списка
-        $('#company-list-scrollbox').children('li').on('click', company, part);
+        $('#company-list-scrollbox').children('li').on('click', company, partnersList);
 
         createDiagram(checkCountryCount());
         $('#company-canvas-legend a').on('click', company, diagramFunc);

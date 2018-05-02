@@ -18750,15 +18750,12 @@ var partners = [];
 
 function section_5_partners(event) {
     event.preventDefault();
-    var company = event.data;
+    var company = event.data,
+        companyID = $(this).attr('data-id');
     setTimeout(200);
     $('#partners-row').show();
-    for (var i = 0; i < company.length; i++) {
-        if (company[i].name === $(this).text()) {
-            for (var j = 0; j < company[i].partners.length; j++) {
-                partners[j] = { name: company[i].partners[j].name, value: company[i].partners[j].value };
-            }
-        }
+    for (var j = 0; j < company[companyID].partners.length; j++) {
+        partners[j] = { name: company[companyID].partners[j].name, value: company[companyID].partners[j].value };
     }
     render();
 }
@@ -18795,7 +18792,7 @@ function render() {
     }
 }
 
-exports.part = section_5_partners;
+exports.partnersList = section_5_partners;
 exports.list = render;
 
 /***/ }),
@@ -18932,7 +18929,7 @@ function company() {
 
         (0, _section_2_companyList2.default)(company);
         //Привязывю отображение партнеров по нажатию на элемент списка
-        $('#company-list-scrollbox').children('li').on('click', company, _section_5_partners.part);
+        $('#company-list-scrollbox').children('li').on('click', company, _section_5_partners.partnersList);
 
         (0, _section_3_createDiagram2.default)(checkCountryCount());
         $('#company-canvas-legend a').on('click', company, _section_3_diagramFunction2.default);
@@ -18998,7 +18995,7 @@ function companyList(company) {
     //Заполнение списка с названиями во второй секции
     var list = $('#company-list-scrollbox');
     for (var i = 0; i < company.length; i++) {
-        list.append('<li><a>' + company[i].name + '</a></li>');
+        list.append('<li data-id="' + i + '"><a>' + company[i].name + '</a></li>');
         if (i % 2 === 0) list.children().last().addClass('company-list_bgc');
     }
 }
