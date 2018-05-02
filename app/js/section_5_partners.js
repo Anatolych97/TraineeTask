@@ -5,43 +5,48 @@ function section_5_partners(event) {
     event.preventDefault();
     let company = event.data,
         companyID = $(this).attr('data-id');
-    setTimeout(200);
+
     $('#partners-row').show();
+    partners = [];
     for (let j = 0; j < company[companyID].partners.length; j++) {
         partners[j] = {name: company[companyID].partners[j].name, value: company[companyID].partners[j].value};
     }
     render();
 }
 
+function sortByName(direct) {
+    if(direct === '1')
+        partners.sort((a, b) => {
+            return (a.name > b.name);
+        });
+    else
+        partners.sort((a, b) => {
+            return (a.name < b.name);
+        });
+}
+function sortByValue(direct) {
+    if (direct === '1')
+        partners.sort((a, b) => {
+            return (a.value - b.value);
+        });
+    else
+        partners.sort((a, b) => {
+            return (b.value - a.value);
+        });
+}
+
 function render() {
-    $('#company-partners__list').empty();
+
     let sortName = $('#sortName'),
         sortValue = $('#sortValue');
 
     if (sortName.attr('data-active') === '1') {
-        if (sortName.attr('data-sort') === '1') {
-            partners.sort((a, b) => {
-                return a.name > b.name;
-            });
-        }
-        else {
-            partners.sort((a, b) => {
-                return a.name < b.name;
-            });
-        }
+        sortByName(sortName.attr('data-sort'));
     }
     if (sortValue.attr('data-active') === '1') {
-        if (sortValue.attr('data-sort') === '0') {
-            partners.sort((a, b) => {
-                return a.value - b.value;
-            });
-        }
-        else {
-            partners.sort((a, b) => {
-                return b.value - a.value;
-            });
-        }
+        sortByValue(sortValue.attr('data-sort'));
     }
+    $('#company-partners__list').empty();
     for (let item in partners)
         $('#company-partners__list').append(`<li class = 'company-partners__item'>` +
             `<span class = 'company-partners__item-name'>${partners[item].name}</span>` +
